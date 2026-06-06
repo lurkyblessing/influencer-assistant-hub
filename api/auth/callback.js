@@ -82,16 +82,15 @@ export default async function handler(req, res) {
       handle = channelData.items?.[0]?.snippet?.title || 'YouTubeChannel';
     }
     else {
-      // Graceful Sandbox Simulation Fallback Mode if env variables are not yet defined on Vercel
-      accessToken = 'sandbox_token_' + Math.random().toString(36).substr(2, 9);
-      handle = 'lurky_' + platform.toLowerCase().replace('/', '');
+      // Missing environment variables or unsupported platform
+      throw new Error(`Integration configuration for ${platform} is incomplete. Missing API Keys.`);
     }
 
     return sendResponse(res, platform, handle, accessToken, null);
   } catch (err) {
-    console.error('Exchange failed, using sandbox fallback', err);
-    // Fall back to sandbox so user experiences no hard errors during environment config stage
-    return sendResponse(res, platform, 'lurky_' + platform.toLowerCase().replace('/', ''), 'sandbox_token', null);
+    console.error('Exchange failed:', err);
+    // Explicitly return an error if connection fails rather than faking it
+    return sendResponse(res, platform, null, null, err.message || 'Authentication failed. Invalid API credentials.');
   }
 }
 

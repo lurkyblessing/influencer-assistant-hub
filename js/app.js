@@ -458,35 +458,56 @@ function setupOAuthHandlers() {
       } else {
         clearInterval(interval);
         
-        // Complete the link in state
-        const displayHandle = handle.startsWith('@') || platform === 'YouTube' ? handle : '@' + handle;
-        
-        if (!state.settings.connections) state.settings.connections = {};
-        state.settings.connections[platform] = displayHandle;
-        
-        // Push platform into integrated platforms array
-        if (!state.settings.platforms) state.settings.platforms = [];
-        if (!state.settings.platforms.includes(platform)) {
-          state.settings.platforms.push(platform);
-        }
+        (async () => {
+          // Complete the link in state
+          const displayHandle = handle.startsWith('@') || platform === 'YouTube' ? handle : '@' + handle;
+          
+          try {
+            if (platform === 'YouTube') {
+              if (loaderText) loaderText.innerText = "Fetching real YouTube data...";
+              const res = await fetch('/api/youtube/sync', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ 
+                  platform, 
+                  handle: displayHandle, 
+                  apiKey: state.settings.youtubeClientId 
+                })
+              });
+              const data = await res.json();
+              
+              if (!res.ok) throw new Error(data.error || 'Failed to sync platform');
+              
+              if (data.posts && data.posts.length > 0) {
+                state.posts.push(...data.posts);
+              }
+            } else {
+              throw new Error(`Real API sync for ${platform} is not fully configured in strict mode.`);
+            }
+            
+            // Save successful connection
+            if (!state.settings.connections) state.settings.connections = {};
+            state.settings.connections[platform] = displayHandle;
+            
+            if (!state.settings.platforms) state.settings.platforms = [];
+            if (!state.settings.platforms.includes(platform)) {
+              state.settings.platforms.push(platform);
+            }
 
-        // Dynamically generate and load initial custom posts based on handle
-        const syncedPosts = db.generatePlatformPosts(platform, displayHandle);
-        state.posts.push(...syncedPosts);
-        
-        // Save
-        db.saveSettings(state.settings);
-        db.savePosts(state.posts);
-        
-        // Close modal
-        closeModal('modal-oauth-login');
-        
-        // Render
-        renderAll();
-        
-        // Auto trigger AI evaluation
-        const insightsBtn = document.getElementById('insights-run-ai-btn');
-        if (insightsBtn) insightsBtn.click();
+            db.saveSettings(state.settings);
+            db.savePosts(state.posts);
+            
+            closeModal('modal-oauth-login');
+            renderAll();
+            
+            const insightsBtn = document.getElementById('insights-run-ai-btn');
+            if (insightsBtn) insightsBtn.click();
+            
+          } catch (err) {
+            alert(`Sync Failed: ${err.message}. Connection aborted.`);
+            closeModal('modal-oauth-login');
+          }
+        })();
       }
     }, 650);
   });

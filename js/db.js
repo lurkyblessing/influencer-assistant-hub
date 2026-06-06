@@ -115,44 +115,7 @@ const db = {
     this.syncToCloud();
   },
 
-  // Platform Sync Post Generator
-  generatePlatformPosts(platform, handle) {
-    const cleanHandle = handle.startsWith('@') ? handle : '@' + handle;
-    const dateOffset = (days) => {
-      const d = new Date();
-      d.setDate(d.getDate() - days);
-      return d.toISOString().split('T')[0];
-    };
-
-    if (platform === 'TikTok') {
-      return [
-        { id: 'p_tok_1', title: `GRWM Outfit Reveal with ${cleanHandle}`, platform: 'TikTok', date: dateOffset(4), views: 98400, likes: 14200, comments: 510, shares: 1400, caption: `Styling summer linen pieces today! What do we think? 🌸✨ ${cleanHandle} #grwm #ootd #summerstyle` },
-        { id: 'p_tok_2', title: `My Assistant rates my coffee runs`, platform: 'TikTok', date: dateOffset(2), views: 45000, likes: 6200, comments: 240, shares: 320, caption: `She gave my standard iced vanilla latte order a 6/10... rude! 😂 ${cleanHandle} #coffee #vlog #relatable` }
-      ];
-    }
-    if (platform === 'Instagram') {
-      return [
-        { id: 'p_ins_1', title: `Capsule wardrobe lookbook by ${cleanHandle}`, platform: 'Instagram', date: dateOffset(3), views: 32100, likes: 1900, comments: 85, shares: 45, caption: `Golden hour hits different in these fabrics. ☀️☕️ Shop my look at link in bio. @revolve` },
-        { id: 'p_ins_2', title: `Creator Strategy Q&A Session`, platform: 'Instagram', date: dateOffset(1), views: 18400, likes: 1100, comments: 130, shares: 12, caption: `Maya and I are reviewing PR packages today! Leave your questions in the comments! 📥` }
-      ];
-    }
-    if (platform === 'YouTube') {
-      return [
-        { id: 'p_yt_1', title: `A Realistic Day In My Life as a Creative Influencer (Vlog)`, platform: 'YouTube', date: dateOffset(5), views: 112000, likes: 10400, comments: 920, shares: 800, caption: `Welcome back to my channel! Sharing the backend of the creator business. Subscribe for more! ${cleanHandle}` }
-      ];
-    }
-    if (platform === 'Pinterest') {
-      return [
-        { id: 'p_pin_1', title: `Cozy Coffee Nook & Decor Ideas`, platform: 'Pinterest', date: dateOffset(4), views: 8900, likes: 450, comments: 12, shares: 280, caption: `Aesthetic room decor inspiration. Pin by ${cleanHandle}.` }
-      ];
-    }
-    if (platform === 'Twitter/X') {
-      return [
-        { id: 'p_tw_1', title: `Threads on building a creator audience`, platform: 'Twitter/X', date: dateOffset(1), views: 6700, likes: 380, comments: 45, shares: 90, caption: `It's not about views, it's about connection. 🧵 Here's my 5-step checklist for building a brand. ${cleanHandle}` }
-      ];
-    }
-    return [];
-  },
+  // Platform Sync - Mock Data generation removed per strict API enforcement
 
   // Initialize connection keys and real-time listeners
   async initSupabase() {
