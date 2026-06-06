@@ -457,6 +457,26 @@
               Your key is saved locally in your browser's LocalStorage and is never sent to any server other than directly to Google's official Gemini API endpoint.
             </p>
           </div>
+
+          <div class="form-group" style="margin-top: 2rem; border-top: 1px solid rgba(255,255,255,0.06); padding-top: 2rem;">
+            <label style="color: var(--white-alyssum); font-weight: 700; margin-bottom: 0.5rem; display: block;">Developer OAuth Settings</label>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 1rem;">Optionally override default OAuth Client IDs to test using your own developer accounts.</p>
+            
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label style="font-size: 0.8rem; color: var(--text-secondary);">Instagram/Meta Client ID (App ID)</label>
+              <input type="text" class="form-control" id="settings-instagram-client-id" placeholder="E.g., 1291322779824857">
+            </div>
+            
+            <div class="form-group" style="margin-bottom: 1rem;">
+              <label style="font-size: 0.8rem; color: var(--text-secondary);">TikTok Client Key</label>
+              <input type="text" class="form-control" id="settings-tiktok-client-id" placeholder="Enter custom TikTok Client Key...">
+            </div>
+
+            <div class="form-group">
+              <label style="font-size: 0.8rem; color: var(--text-secondary);">YouTube OAuth Client ID</label>
+              <input type="text" class="form-control" id="settings-youtube-client-id" placeholder="Enter custom YouTube Client ID...">
+            </div>
+          </div>
           
           <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 1.5rem;">
             <button class="btn btn-primary" id="settings-save-btn">Save Settings</button>

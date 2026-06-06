@@ -223,12 +223,19 @@ function renderConnectionsList(containerId) {
 window.connectPlatform = function(platform) {
   state.activeOauthPlatform = platform;
 
+  // Extract platform-specific custom Client ID from settings
+  let customId = '';
+  if (platform === 'Instagram') customId = state.settings.instagramClientId || '';
+  else if (platform === 'TikTok') customId = state.settings.tiktokClientId || '';
+  else if (platform === 'YouTube') customId = state.settings.youtubeClientId || '';
+
   // 1. Open the real serverless OAuth initiator in a centered popup window
   const popupWidth = 600;
   const popupHeight = 700;
   const left = (window.screen.width / 2) - (popupWidth / 2);
   const top = (window.screen.height / 2) - (popupHeight / 2);
-  const loginUrl = `/api/auth/login?platform=${encodeURIComponent(platform)}`;
+  const loginUrl = `/api/auth/login?platform=${encodeURIComponent(platform)}` + 
+    (customId ? `&customClientId=${encodeURIComponent(customId)}` : '');
   
   window.open(
     loginUrl,
@@ -1341,6 +1348,15 @@ function setupSettingsHandlers() {
   const joinCodeInput = document.getElementById('settings-join-code');
   const shareCodeDiv = document.getElementById('settings-share-code');
   
+  // Populate developer client IDs if present
+  const instaInput = document.getElementById('settings-instagram-client-id');
+  const tiktokInput = document.getElementById('settings-tiktok-client-id');
+  const ytInput = document.getElementById('settings-youtube-client-id');
+  
+  if (instaInput) instaInput.value = state.settings.instagramClientId || '';
+  if (tiktokInput) tiktokInput.value = state.settings.tiktokClientId || '';
+  if (ytInput) ytInput.value = state.settings.youtubeClientId || '';
+
   if (shareCodeDiv && state.settings.workspaceId) {
     shareCodeDiv.innerText = state.settings.workspaceId;
   }
@@ -1368,10 +1384,18 @@ function setupSettingsHandlers() {
     const activeRole = document.getElementById('settings-active-role').value;
     const apiKey = document.getElementById('settings-api-key').value.trim();
     
+    const instagramClientId = document.getElementById('settings-instagram-client-id').value.trim();
+    const tiktokClientId = document.getElementById('settings-tiktok-client-id').value.trim();
+    const youtubeClientId = document.getElementById('settings-youtube-client-id').value.trim();
+
     state.settings.influencerName = influencerName;
     state.settings.assistantName = assistantName;
     state.settings.activeRole = activeRole;
     state.settings.geminiApiKey = apiKey;
+    
+    state.settings.instagramClientId = instagramClientId;
+    state.settings.tiktokClientId = tiktokClientId;
+    state.settings.youtubeClientId = youtubeClientId;
     
     db.saveSettings(state.settings);
     state.activeUser = activeRole;
