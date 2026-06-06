@@ -8,8 +8,8 @@ export default function handler(req, res) {
     const clientKey = process.env.TIKTOK_CLIENT_KEY || 'lumina_key';
     authUrl = `https://www.tiktok.com/v2/auth/authorize/?client_key=${clientKey}&scope=user.info.profile,video.list&response_type=code&redirect_uri=${encodeURIComponent(redirectUri)}&state=TikTok`;
   } else if (platform === 'Instagram') {
-    const clientId = process.env.INSTAGRAM_CLIENT_ID || 'lumina_id';
-    authUrl = `https://api.instagram.com/oauth/authorize?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=user_profile,user_media&response_type=code&state=Instagram`;
+    const clientId = process.env.INSTAGRAM_CLIENT_ID || '810868f1c8ec18f195b58242d3335d00';
+    authUrl = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=instagram_basic,instagram_manage_insights,pages_read_engagement,pages_show_list&response_type=code&state=Instagram`;
   } else if (platform === 'YouTube') {
     const clientId = process.env.YOUTUBE_CLIENT_ID || 'lumina_id';
     authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=https://www.googleapis.com/auth/youtube.readonly&state=YouTube&access_type=offline&prompt=consent`;
