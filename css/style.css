@@ -75,21 +75,26 @@ body {
 /* App Wrapper */
 .app-container {
   display: flex;
+  flex-direction: column;
   width: 100%;
   min-height: 100vh;
 }
 
-/* Sidebar Styling */
+/* Sidebar transformed into a Top clean Header Navigation */
 .sidebar {
-  width: var(--sidebar-width);
-  background: rgba(250, 246, 244, 0.85); /* Matches light cream */
+  width: 100%;
+  background: rgba(250, 246, 244, 0.95);
   backdrop-filter: blur(20px);
-  border-right: 1px solid var(--cradle-pink-low);
-  padding: 2rem 1.5rem;
+  border-bottom: 1.5px solid var(--java-solid);
+  border-right: none;
+  padding: 1rem 3rem;
   display: flex;
-  flex-direction: column;
-  position: fixed;
-  height: 100vh;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  height: 80px;
   z-index: 100;
 }
 
@@ -97,28 +102,28 @@ body {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  margin-bottom: 3rem;
+  margin-bottom: 0;
 }
 
 .logo-icon {
-  width: 40px;
-  height: 40px;
+  width: 36px;
+  height: 36px;
   background: var(--java-solid);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.02);
   color: var(--fruit-dove);
 }
 
 .logo-icon svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .logo-text {
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.5px;
   color: var(--white-alyssum);
@@ -127,31 +132,31 @@ body {
 .nav-menu {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  flex-grow: 1;
+  flex-direction: row;
+  gap: 1.5rem;
+  align-items: center;
+  flex-grow: 0;
 }
 
 .nav-item button {
-  width: 100%;
+  width: auto;
   background: none;
   border: none;
   color: var(--text-secondary);
-  padding: 0.85rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: var(--border-radius-md);
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 1rem;
-  font-size: 1rem;
-  font-weight: 500;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  font-weight: 600;
   transition: var(--transition-smooth);
-  text-align: left;
 }
 
 .nav-item button svg {
-  width: 20px;
-  height: 20px;
+  width: 16px;
+  height: 16px;
   stroke: var(--text-secondary);
   fill: none;
   stroke-width: 2;
@@ -177,26 +182,26 @@ body {
 }
 
 .user-profile {
-  margin-top: auto;
+  margin-top: 0;
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid var(--cradle-pink-low);
+  padding-top: 0;
+  border-top: none;
 }
 
 .user-avatar {
-  width: 44px;
-  height: 44px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   background: linear-gradient(135deg, var(--cradle-pink), var(--fruit-dove));
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  color: var(--java-solid);
-  font-size: 1.1rem;
-  border: 2px solid rgba(239, 235, 231, 0.2);
+  color: var(--white-alyssum);
+  font-size: 0.95rem;
+  border: 1.5px solid var(--java-solid);
 }
 
 .user-info {
@@ -205,22 +210,24 @@ body {
 }
 
 .user-name {
-  font-size: 0.95rem;
+  font-size: 0.9rem;
   font-weight: 600;
 }
 
 .user-role {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--text-muted);
 }
 
 /* Main Content Area */
 .main-content {
-  margin-left: var(--sidebar-width);
-  padding: 2.5rem;
+  margin-left: 0;
+  padding: 3rem 6rem; /* Centered roomy layout */
   flex-grow: 1;
-  min-height: 100vh;
-  width: calc(100% - var(--sidebar-width));
+  min-height: calc(100vh - 80px);
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 /* Page Headers */
