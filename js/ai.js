@@ -9,48 +9,26 @@ const ai = {
     const settings = db.getSettings();
     const apiKey = settings.geminiApiKey;
 
-    if (apiKey && apiKey.trim() !== "") {
-      try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`;
-        const response = await fetch(url, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({
-            contents: [
-              {
-                role: 'user',
-                parts: [{ text: (systemInstruction ? `${systemInstruction}\n\n` : "") + prompt }]
-              }
-            ],
-            generationConfig: {
-              temperature: 0.7,
-              topK: 40,
-              topP: 0.95,
-              maxOutputTokens: 1024,
-            }
-          })
-        });
-
-        if (!response.ok) {
-          const errData = await response.json();
-          throw new Error(errData.error?.message || "Failed to communicate with Gemini API");
-        }
-
-        const data = await response.json();
-        return data.candidates[0].content.parts[0].text;
-      } catch (error) {
-        console.error("Gemini API Error, falling back to local engine:", error);
-        return `[Heuristic Fallback due to API error: ${error.message}]\n\n` + this.fallbackGenerate(prompt);
-      }
-    } else {
-      // Return simulated/heuristic response
-      return new Promise((resolve) => {
-        setTimeout(() => {
-          resolve(this.fallbackGenerate(prompt));
-        }, 1500); // Simulate API latency
+    try {
+      const response = await fetch('/api/ai/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(apiKey ? { 'x-gemini-api-key': apiKey } : {})
+        },
+        body: JSON.stringify({ prompt, systemInstruction })
       });
+
+      if (!response.ok) {
+        const errData = await response.json();
+        throw new Error(errData.error || "Failed to communicate with AI server");
+      }
+
+      const data = await response.json();
+      return data.text || "No content returned from AI model.";
+    } catch (error) {
+      console.error("AI Server Error, falling back to local engine:", error);
+      return `[Heuristic Fallback due to API error: ${error.message}]\n\n` + this.fallbackGenerate(prompt);
     }
   },
 
