@@ -64,9 +64,9 @@
       
       <!-- Privacy & Terms links -->
       <div style="margin-top: auto; padding: 0.75rem 0; font-size: 0.7rem; text-align: center; display: flex; justify-content: center; gap: 0.5rem; border-top: 1px solid var(--cradle-pink-low); opacity: 0.85; margin-bottom: 0.75rem;">
-        <a href="#" onclick="openModal('modal-privacy')" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Privacy Policy</a>
+        <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Privacy Policy</a>
         <span style="color: var(--text-muted);">•</span>
-        <a href="#" onclick="openModal('modal-terms')" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Terms of Service</a>
+        <a href="terms.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Terms of Service</a>
       </div>
       
       <div class="user-profile">
@@ -730,51 +730,6 @@
     </div>
   </div>
 
-  <!-- Privacy Policy Modal -->
-  <div class="modal-overlay" id="modal-privacy">
-    <div class="modal" style="border-color: var(--cradle-pink); max-width: 500px;">
-      <div class="modal-header">
-        <h2 style="font-weight: 800; font-size: 1.35rem; color: var(--white-alyssum);">Privacy Policy</h2>
-        <button class="modal-close" onclick="closeModal('modal-privacy')">&times;</button>
-      </div>
-      <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; max-height: 300px; overflow-y: auto; padding-right: 0.5rem; text-align: left; margin-top: 1rem;">
-        <p><strong>Effective Date:</strong> June 6, 2026</p>
-        <p>Lumina Hub values your privacy. This policy describes how we collect, use, and process data.</p>
-        
-        <h3 style="color: var(--white-alyssum); font-size: 0.95rem; margin-top: 1rem; font-weight: 700;">1. Local Storage Cache</h3>
-        <p>Your workspace credentials, layout settings, and tasks are stored entirely inside your browser's local storage database (LocalStorage). We do not collect or upload this data to external database hosts.</p>
-        
-        <h3 style="color: var(--white-alyssum); font-size: 0.95rem; margin-top: 1rem; font-weight: 700;">2. API Token Safety</h3>
-        <p>When connecting to platforms like TikTok, Instagram, or YouTube, we utilize secure serverless functions. These tokens are saved locally on your device and are strictly used to download creator metrics for analytical insights.</p>
-      </div>
-      <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
-        <button class="btn btn-primary" onclick="closeModal('modal-privacy')">I Understand</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Terms of Service Modal -->
-  <div class="modal-overlay" id="modal-terms">
-    <div class="modal" style="border-color: var(--cradle-pink); max-width: 500px;">
-      <div class="modal-header">
-        <h2 style="font-weight: 800; font-size: 1.35rem; color: var(--white-alyssum);">Terms of Service</h2>
-        <button class="modal-close" onclick="closeModal('modal-terms')">&times;</button>
-      </div>
-      <div style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; max-height: 300px; overflow-y: auto; padding-right: 0.5rem; text-align: left; margin-top: 1rem;">
-        <p><strong>Effective Date:</strong> June 6, 2026</p>
-        <p>By launching the Lumina Hub workspace, you agree to comply with our Terms of Service.</p>
-        
-        <h3 style="color: var(--white-alyssum); font-size: 0.95rem; margin-top: 1rem; font-weight: 700;">1. Permitted Workspace Use</h3>
-        <p>You and your assistant are granted a license to utilize Lumina Hub for business intelligence, task coordination, and content mapping.</p>
-        
-        <h3 style="color: var(--white-alyssum); font-size: 0.95rem; margin-top: 1rem; font-weight: 700;">2. Third-Party Platforms</h3>
-        <p>Users must comply with TikTok's Developer Policies, Meta's Platform Terms, and Google's Terms of Service when linking accounts.</p>
-      </div>
-      <div style="display: flex; justify-content: flex-end; margin-top: 1.5rem;">
-        <button class="btn btn-primary" onclick="closeModal('modal-terms')">Accept</button>
-      </div>
-    </div>
-  </div>
 
   <!-- Scripts -->
   <script src="js/db.js"></script>

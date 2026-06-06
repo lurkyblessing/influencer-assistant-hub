@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Lumina Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #1e1919;
+      color: #efebe7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .page-container {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--cradle-pink-low);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+    }
+    .logo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white-alyssum);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--white-alyssum), var(--cradle-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .last-updated {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: var(--white-alyssum);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      border-left: 3px solid var(--cradle-pink);
+      padding-left: 0.75rem;
+    }
+    p, li {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    a {
+      color: var(--cradle-pink);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a:hover {
+      opacity: 0.8;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <div class="logo-header">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cradle-pink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
+          <path d="M 12,2.5 C 12.5,7 13,8.5 18.5,9 C 14,11 14.5,13 15.5,18 C 13,15 12,15.5 12,20 C 12,15.5 11,15 8.5,18 C 9.5,13 10,11 5.5,9 C 11,8.5 11.5,7 12,2.5 Z" />
+        </svg>
+      </div>
+      <div class="logo-text">Lumina Hub</div>
+    </div>
+
+    <h1>Privacy Policy</h1>
+    <div class="last-updated">Last Updated: June 6, 2026</div>
+
+    <h2>1. Introduction</h2>
+    <p>Lumina Hub values your privacy. This Privacy Policy details how we collect, process, and safeguard information when you use our influencer-assistant workspace.</p>
+
+    <h2>2. Data Storage & Local Cache</h2>
+    <p>To maximize security and give you complete control, Lumina Hub is designed to execute directly within your browser. All configuration settings, team profiles, workspace tasks, and cache entries are saved locally using <strong>LocalStorage</strong> on your physical device. We do not transmit or store this personal workspace data on external database servers.</p>
+
+    <h2>3. Social Media API Integrations</h2>
+    <p>Lumina Hub provides interfaces to connect your TikTok, Instagram, and YouTube accounts. These authentication requests are processed via secure serverless functions:
+      <ul>
+        <li><strong>OAuth Authentication</strong>: When signing in, permissions are requested directly from the respective platform (TikTok, Meta, Google).</li>
+        <li><strong>Access Tokens</strong>: Retrieved access tokens are saved locally in your device's browser cache and are only used to call official endpoints to fetch creator statistics.</li>
+        <li><strong>Security</strong>: Client secrets are stored securely inside Vercel's backend environment variables and are never exposed to clients or third parties.</li>
+      </ul>
+    </p>
+
+    <h2>4. Cookies & Analytics</h2>
+    <p>We do not run tracking cookies or sell user profiles to advertising networks. Any processing of metrics happens locally inside the app shell to compile performance insights.</p>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="back-btn">
+        ← Back to Workspace
+      </a>
+    </div>
+  </div>
+
+</body>
+</html>
