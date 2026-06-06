@@ -202,16 +202,18 @@ function renderConnectionsList(containerId) {
 window.connectPlatform = function(platform) {
   state.activeOauthPlatform = platform;
 
-  // 1. Open the REAL platform login URL in a new tab
-  const platformLoginUrls = {
-    'TikTok': 'https://www.tiktok.com/login',
-    'Instagram': 'https://www.instagram.com/accounts/login/',
-    'YouTube': 'https://accounts.google.com/signin',
-    'Pinterest': 'https://www.pinterest.com/login/',
-    'Twitter/X': 'https://twitter.com/i/flow/login'
-  };
-  const loginUrl = platformLoginUrls[platform] || `https://${platform.toLowerCase().replace('/', '')}.com/login`;
-  window.open(loginUrl, '_blank');
+  // 1. Open the real serverless OAuth initiator in a centered popup window
+  const popupWidth = 600;
+  const popupHeight = 700;
+  const left = (window.screen.width / 2) - (popupWidth / 2);
+  const top = (window.screen.height / 2) - (popupHeight / 2);
+  const loginUrl = `/api/auth/login?platform=${encodeURIComponent(platform)}`;
+  
+  window.open(
+    loginUrl,
+    'LuminaHubOAuth',
+    `width=${popupWidth},height=${popupHeight},top=${top},left=${left},resizable=yes,scrollbars=yes`
+  );
   
   // 2. Set up modal in "Waiting for authentication" state
   const modalContainer = document.getElementById('oauth-modal-container');
@@ -241,19 +243,19 @@ window.connectPlatform = function(platform) {
     modalContainer.style.boxShadow = `0 12px 50px ${platformColor}22`;
   }
   
-  // Address bar URL simulation — show the real login URL
+  // Address bar URL simulation — show the Vercel API redirect initiator
   if (addressBar) {
-    addressBar.innerText = loginUrl;
+    addressBar.innerText = window.location.origin + loginUrl;
   }
 
   if (title) {
     title.innerHTML = `<span style="color:${platformColor}">${platform}</span> Login Portal`;
   }
   if (desc) {
-    desc.innerText = `A new tab has been opened. Complete your login on ${platform}, then return here.`;
+    desc.innerText = `A popup window has been opened. Log in to your ${platform} developer account, then we will automatically advance.`;
   }
   if (waitingHint) {
-    waitingHint.innerText = `Complete your login on the ${platform} tab, then click below.`;
+    waitingHint.innerText = `Logging in via secure connection. Click below if you need to manually bypass.`;
   }
   if (handleDesc) {
     handleDesc.innerText = `Enter your ${platform} username/handle so we can scan your content.`;
@@ -296,8 +298,6 @@ window.disconnectPlatform = function(platform) {
   }
 };
 
-
-
 function setupOAuthHandlers() {
   const loginBtn = document.getElementById('oauth-login-btn');
   const scanBtn = document.getElementById('oauth-scan-btn');
@@ -317,7 +317,30 @@ function setupOAuthHandlers() {
 
   if (!loginBtn || !grantBtn || !denyBtn) return;
 
-  // Handle "I've Logged In" button click (Step 1 → Step 2: Handle Capture)
+  // Handle postMessage event listener from the popup window callback
+  window.addEventListener('message', (event) => {
+    if (event.data && event.data.type === 'OAUTH_CALLBACK') {
+      const { status, platform, handle, error } = event.data;
+      
+      if (status === 'success') {
+        if (usernameInput) {
+          usernameInput.value = handle || '';
+        }
+        
+        // Transition to Step 2 (Confirm username)
+        if (stepLogin) stepLogin.style.display = 'none';
+        if (stepHandle) stepHandle.style.display = 'block';
+        
+        if (addressBar) {
+          addressBar.innerText = `${window.location.origin}/api/auth/callback?status=success&platform=${platform}`;
+        }
+      } else {
+        alert(`Authentication failed: ${error || 'Unknown error'}`);
+      }
+    }
+  });
+
+  // Handle manual/fallback bypass button click (Step 1 → Step 2: Handle Capture)
   loginBtn.addEventListener('click', () => {
     const platform = state.activeOauthPlatform;
 
@@ -381,7 +404,7 @@ function setupOAuthHandlers() {
 
     // Update Address Bar to Redirect URL callback
     if (addressBar) {
-      addressBar.innerText = 'http://localhost:8000/oauth/callback?code=sec_auth_tok_lumina';
+      addressBar.innerText = window.location.origin + '/oauth/callback?code=sec_auth_tok_lumina';
     }
 
     const steps = [
