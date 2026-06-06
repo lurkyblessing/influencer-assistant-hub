@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lumina Hub - Influencer & Assistant Collaborative Space</title>
+  <meta name="description" content="Collaborative creator platform for influencers and assistants to track tasks, plan content, and leverage AI insights.">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  
+  <div class="app-container">
+    
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+      <div class="logo-container">
+        <div class="logo-icon">
+          <!-- Sparkles Icon SVG -->
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 3l1.912 5.886h6.19l-5.008 3.638 1.912 5.886L12 14.772l-5.008 3.638 1.912-5.886-5.008-3.638h6.19z" />
+          </svg>
+        </div>
+        <span class="logo-text">Lumina Hub</span>
+      </div>
+      
+      <ul class="nav-menu">
+        <li class="nav-item active" data-tab="dashboard">
+          <button>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            Dashboard
+          </button>
+        </li>
+        <li class="nav-item" data-tab="tasks">
+          <button>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+            Task Board
+          </button>
+        </li>
+        <li class="nav-item" data-tab="planner">
+          <button>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            Post Planner
+          </button>
+        </li>
+        <li class="nav-item" data-tab="insights">
+          <button>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            AI Insights
+          </button>
+        </li>
+        <li class="nav-item" data-tab="studio">
+          <button>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sparkle-icon"><path d="M9.82 2.82a.6.6 0 0 0-1.04 0L7.14 5.92A3.2 3.2 0 0 1 4.7 7.35L1.6 8.35a.6.6 0 0 0 0 1.13l3.1.98a3.2 3.2 0 0 1 2.45 1.44l1.64 3.08a.6.6 0 0 0 1.04 0l1.64-3.08A3.2 3.2 0 0 1 14 9.48l3.1-.98a.6.6 0 0 0 0-1.13l-3.1-.98a3.2 3.2 0 0 1-2.45-1.44L9.82 2.82zm8 11a.4.4 0 0 0-.7 0l-1.08 2.04a2.1 2.1 0 0 1-1.6 1l-2.03.65a.4.4 0 0 0 0 .76l2.03.65a2.1 2.1 0 0 1 1.6 1l1.08 2.04c.12.23.48.23.6 0l1.08-2.04a2.1 2.1 0 0 1 1.6-1l2.03-.65a.4.4 0 0 0 0-.76l-2.03-.65a2.1 2.1 0 0 1-1.6-1l-1.08-2.04z"/></svg>
+            AI Content Studio
+          </button>
+        </li>
+        <li class="nav-item" data-tab="settings">
+          <button>
+            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+            Settings
+          </button>
+        </li>
+      </ul>
+      
+      <div class="user-profile">
+        <div class="user-avatar" id="active-user-avatar">S</div>
+        <div class="user-info">
+          <span class="user-name" id="active-user-name">Sienna</span>
+          <span class="user-role" id="active-user-role">Influencer</span>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Main Content Panel -->
+    <main class="main-content">
+      
+      <!-- 1. Dashboard Tab -->
+      <section id="tab-dashboard" class="tab-pane active">
+        <div class="page-header">
+          <div class="header-title">
+            <h1 id="dashboard-welcome">Hey Sienna,</h1>
+            <p id="dashboard-subtitle">Here's what you and Maya have lined up for today.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-secondary" id="dashboard-toggle-role">View as Assistant</button>
+            <button class="btn btn-primary" id="dashboard-new-reminder">+ Add Reminder</button>
+          </div>
+        </div>
+        
+        <!-- KPI Row -->
+        <div class="kpi-row">
+          <div class="kpi-card">
+            <span class="kpi-title">Total Views (Recent)</span>
+            <span class="kpi-value" id="kpi-views">0</span>
+            <span class="kpi-change neutral">No data yet</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Avg. Engagement Rate</span>
+            <span class="kpi-value" id="kpi-engagement">0.0%</span>
+            <span class="kpi-change neutral">Connect accounts to track</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Pending Tasks</span>
+            <span class="kpi-value" id="kpi-tasks">0</span>
+            <span class="kpi-change neutral">No data yet</span>
+          </div>
+          <div class="kpi-card">
+            <span class="kpi-title">Upcoming Deliverables</span>
+            <span class="kpi-value" id="kpi-posts">0</span>
+            <span class="kpi-change neutral">Connect accounts to track</span>
+          </div>
+        </div>
+        
+        <!-- Dashboard Content Grid -->
+        <div class="dashboard-grid">
+          <!-- Quick Reminders -->
+          <div class="card">
+            <h2 class="card-title" style="margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">Reminders & Alerts</h2>
+            <div class="reminders-list" id="dashboard-reminders-list">
+              <!-- Rendered dynamically -->
+            </div>
+          </div>
+          
+          <!-- Today's Content Plan -->
+          <div class="card dashboard-card-wide">
+            <h2 class="card-title" style="margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">Active Social Posts & Content</h2>
+            <div class="content-plan-summary" style="display: flex; flex-direction: column; gap: 1rem;">
+              <p style="color: var(--text-secondary); font-size: 0.95rem;">Review and track visual media, click to add/update live post engagement stats.</p>
+              <div id="dashboard-recent-posts" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                <!-- Rendered dynamically -->
+              </div>
+            </div>
+          </div>
+          
+          <!-- Quick AI Insights Banner -->
+          <div class="card dashboard-card-full" style="background: linear-gradient(135deg, rgba(207, 92, 120, 0.15) 0%, rgba(151, 52, 67, 0.25) 100%); border-color: var(--fruit-dove);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <div>
+                <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--white-alyssum); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--fruit-dove)" stroke-width="2" fill="none" class="sparkle-icon" style="margin-right:4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                  Latest AI Engagement Trend
+                </h3>
+                <p id="dashboard-ai-insights-snippet" style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">
+                  Analyzing logged posts... Click "AI Insights" tab to run a deep strategic analysis.
+                </p>
+              </div>
+              <button class="btn btn-primary" id="dashboard-to-insights-btn" style="flex-shrink: 0;">View Full Analysis</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 2. Task Board Tab -->
+      <section id="tab-tasks" class="tab-pane">
+        <div class="page-header">
+          <div class="header-title">
+            <h1>Task Board</h1>
+            <p>Coordinate, assign, and execute your creator schedule.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="tasks-add-task-btn">+ New Task</button>
+          </div>
+        </div>
+        
+        <!-- Kanban Columns -->
+        <div class="kanban-board">
+          <!-- TODO Column -->
+          <div class="kanban-column" data-status="todo">
+            <div class="column-header">
+              <span class="column-title">📋 To Do</span>
+              <span class="column-count" id="count-todo">0</span>
+            </div>
+            <div class="kanban-cards" id="column-todo">
+              <!-- Tasks go here -->
+            </div>
+          </div>
+          
+          <!-- IN PROGRESS Column -->
+          <div class="kanban-column" data-status="in-progress">
+            <div class="column-header">
+              <span class="column-title">⚡ In Progress</span>
+              <span class="column-count" id="count-in-progress">0</span>
+            </div>
+            <div class="kanban-cards" id="column-in-progress">
+              <!-- Tasks go here -->
+            </div>
+          </div>
+          
+          <!-- DONE Column -->
+          <div class="kanban-column" data-status="done">
+            <div class="column-header">
+              <span class="column-title">✅ Completed</span>
+              <span class="column-count" id="count-done">0</span>
+            </div>
+            <div class="kanban-cards" id="column-done">
+              <!-- Tasks go here -->
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 3. Post Planner Tab -->
+      <section id="tab-planner" class="tab-pane">
+        <div class="page-header">
+          <div class="header-title">
+            <h1>Content Planner</h1>
+            <p>Schedule your posts and keep your content feed visually consistent.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="planner-add-post-btn">+ Log Scheduled Post</button>
+          </div>
+        </div>
+        
+        <div class="card" style="margin-bottom: 2rem;">
+          <h2 style="font-weight: 700; margin-bottom: 1.5rem; font-size: 1.25rem;">June 2026</h2>
+          <div class="planner-grid" id="calendar-grid">
+            <!-- Calendar Days Header -->
+            <div class="calendar-day-header">SUN</div>
+            <div class="calendar-day-header">MON</div>
+            <div class="calendar-day-header">TUE</div>
+            <div class="calendar-day-header">WED</div>
+            <div class="calendar-day-header">THU</div>
+            <div class="calendar-day-header">FRI</div>
+            <div class="calendar-day-header">SAT</div>
+            
+            <!-- Cells generated dynamically -->
+          </div>
+        </div>
+      </section>
+      
+      <!-- 4. AI Insights Tab -->
+      <section id="tab-insights" class="tab-pane">
+        <div class="page-header">
+          <div class="header-title">
+            <h1>AI Engagement Insights</h1>
+            <p>Let Lumina AI evaluate your metrics to see what content generates optimal performance.</p>
+          </div>
+          <div class="header-actions">
+            <button class="btn btn-primary" id="insights-run-ai-btn">
+              <svg viewBox="0 0 24 24" width="16" height="16" stroke="white" stroke-width="2" fill="none" class="sparkle-icon" style="margin-right: 4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Analyze with AI
+            </button>
+          </div>
+        </div>
+        
+        <!-- Analysis Results Card -->
+        <div class="card" style="margin-bottom: 2rem;">
+          <div class="insight-trend-header">
+            <div>
+              <span class="tag" style="background: var(--fruit-dove-glow); color: var(--fruit-dove); margin-bottom: 0.5rem; display: inline-block;">AI Executive Summary</span>
+              <h2 id="insights-trend-title" style="font-size: 1.4rem; font-weight: 700;">Performance Trend</h2>
+            </div>
+            <span id="insights-last-analyzed" style="font-size: 0.8rem; color: var(--text-muted);">Last analyzed: Today</span>
+          </div>
+          <p id="insights-overall-text" style="font-size: 1.1rem; line-height: 1.6; color: var(--text-secondary); margin-bottom: 2rem;">
+            Click "Analyze with AI" above to run diagnostic heuristics on your logged social media posts.
+          </p>
+          
+          <div class="insights-grid">
+            <!-- WHAT IS WORKING -->
+            <div class="insight-card insight-card-working">
+              <h3 class="insight-card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+                What worked
+              </h3>
+              <ul class="insight-list" id="insights-working-list">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+            
+            <!-- WHAT IS NOT WORKING -->
+            <div class="insight-card insight-card-notworking">
+              <h3 class="insight-card-title">
+                <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>
+                What didn't work
+              </h3>
+              <ul class="insight-list" id="insights-notworking-list">
+                <!-- Rendered dynamically -->
+              </ul>
+            </div>
+          </div>
+          
+          <!-- Recommendations Section -->
+          <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid var(--cradle-pink-low);">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: var(--white-alyssum);">💡 AI Strategy Recommendations</h3>
+            <ul class="insight-list" id="insights-recommendations-list" style="gap: 0.75rem;">
+              <!-- Rendered dynamically -->
+            </ul>
+          </div>
+        </div>
+        
+        <!-- Post Performance Logger Table -->
+        <div class="card">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h2 style="font-size: 1.25rem; font-weight: 700;">Logged Post Analytics Library</h2>
+            <button class="btn btn-secondary" id="insights-add-post-btn">+ Add Post to Log</button>
+          </div>
+          <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.5rem;">The AI analyzes these entries to optimize your creative workflow and reminders.</p>
+          <div style="overflow-x: auto;">
+            <table class="analytics-list-table">
+              <thead>
+                <tr>
+                  <th>Platform</th>
+                  <th>Post Details</th>
+                  <th>Date</th>
+                  <th>Views</th>
+                  <th>Likes</th>
+                  <th>Comments</th>
+                  <th>Shares</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="insights-table-body">
+                <!-- Logged posts will go here -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 5. AI Content Studio Tab -->
+      <section id="tab-studio" class="tab-pane">
+        <div class="page-header">
+          <div class="header-title">
+            <h1>AI Content Studio</h1>
+            <p>Generate hooks, captions, and outreach copy tuned to your Pantone brand voice.</p>
+          </div>
+        </div>
+        
+        <div class="ai-studio-grid">
+          <!-- Generation Panel -->
+          <div class="card">
+            <h2 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 1.5rem;">Prompt & Parameters</h2>
+            
+            <div class="form-group">
+              <label>Select Tool Type</label>
+              <select class="form-control" id="studio-tool-type">
+                <option value="hook">🔥 Hook & Script Builder</option>
+                <option value="caption">✍️ Caption & Hashtag Suite</option>
+                <option value="pitch">✉️ Brand Sponsorship Pitch Writer</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label>What is your post or campaign about?</label>
+              <textarea class="form-control" id="studio-prompt" rows="5" placeholder="E.g., A review of the Sephora summer lip gloss kit, showing close ups and a rating scale..."></textarea>
+            </div>
+            
+            <div class="form-group">
+              <label>Tone of Voice</label>
+              <select class="form-control" id="studio-tone">
+                <option value="energetic">Energetic & Hype (Best for TikTok)</option>
+                <option value="aesthetic">Aesthetic & Warm (Brand palette vibe)</option>
+                <option value="professional">Professional & Direct (Best for outreach)</option>
+                <option value="vulnerable">Vulnerable & Personal (Deep talks)</option>
+              </select>
+            </div>
+            
+            <button class="btn btn-primary" id="studio-generate-btn" style="width: 100%; justify-content: center; margin-top: 1.5rem;">
+              <svg viewBox="0 0 24 24" width="18" height="18" stroke="white" stroke-width="2" fill="none" class="sparkle-icon" style="margin-right: 4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+              Generate Copy
+            </button>
+          </div>
+          
+          <!-- Output Panel -->
+          <div class="ai-output-container">
+            <div class="ai-output-card" id="studio-output-card">
+              <div class="ai-placeholder" id="studio-output-placeholder">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                <div>
+                  <p style="font-weight: 600; margin-bottom: 0.25rem;">Generation Output</p>
+                  <p style="font-size: 0.85rem;">Your customized scripts and ideas will print here.</p>
+                </div>
+              </div>
+              <div class="ai-result" id="studio-output-text" style="display: none;"></div>
+            </div>
+            <div class="ai-actions" style="display: none;" id="studio-actions">
+              <button class="btn btn-secondary" id="studio-copy-btn">📋 Copy to Clipboard</button>
+              <button class="btn btn-outline" id="studio-to-task-btn">+ Save as Task</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      <!-- 6. Settings Tab -->
+      <section id="tab-settings" class="tab-pane">
+        <div class="page-header">
+          <div class="header-title">
+            <h1>Workspace Settings</h1>
+            <p>Customize roles, names, and link your Gemini AI integration.</p>
+          </div>
+        </div>
+        
+        <div class="card" style="max-width: 600px;">
+          <h2 style="font-weight: 700; font-size: 1.25rem; margin-bottom: 1.5rem;">Profile & Key Settings</h2>
+          
+          <div class="form-row">
+            <div class="form-group">
+              <label>Influencer Name</label>
+              <input type="text" class="form-control" id="settings-influencer-name" value="Sienna">
+            </div>
+            <div class="form-group">
+              <label>Assistant Name</label>
+              <input type="text" class="form-control" id="settings-assistant-name" value="Maya">
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Selected Workspace Role</label>
+            <select class="form-control" id="settings-active-role">
+              <option value="influencer">Influencer</option>
+              <option value="assistant">Assistant</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Linked Social Media Accounts</label>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Connect accounts to dynamically import real metrics and populate your dashboard.</p>
+            <div id="settings-connections-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+              <!-- Managed via JavaScript rendering -->
+            </div>
+          </div>
+          
+          <div class="form-group" style="margin-top: 2rem;">
+            <label style="display: flex; align-items: center; justify-content: space-between;">
+              <span>Gemini API Key</span>
+              <span style="font-size: 0.75rem; color: var(--fruit-dove); font-weight: normal;">Optional (Enables real AI generation)</span>
+            </label>
+            <input type="password" class="form-control" id="settings-api-key" placeholder="Enter your Gemini API Key...">
+            <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem; line-height: 1.4;">
+              Your key is saved locally in your browser's LocalStorage and is never sent to any server other than directly to Google's official Gemini API endpoint.
+            </p>
+          </div>
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top: 1.5rem;">
+            <button class="btn btn-primary" id="settings-save-btn">Save Settings</button>
+            <button class="btn btn-outline" id="settings-reset-btn" style="border-color:var(--deep-claret); color:var(--deep-claret);">Rerun Onboarding Setup</button>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+  </div>
+  
+  <!-- MODALS -->
+  
+  <!-- Add Task Modal -->
+  <div class="modal-overlay" id="modal-add-task">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Create Collaboration Task</h2>
+        <button class="modal-close" onclick="closeModal('modal-add-task')">&times;</button>
+      </div>
+      <div class="form-group">
+        <label>Task Title / Deliverable</label>
+        <input type="text" class="form-control" id="form-task-title" placeholder="E.g., Shoot aesthetic B-roll for fashion video...">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Platform</label>
+          <select class="form-control" id="form-task-platform">
+            <option value="TikTok">TikTok</option>
+            <option value="Instagram">Instagram</option>
+            <option value="YouTube">YouTube</option>
+            <option value="General">General / PR</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Assignee</label>
+          <select class="form-control" id="form-task-assignee">
+            <option value="Influencer">Influencer (Sienna)</option>
+            <option value="Assistant">Assistant (Maya)</option>
+          </select>
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Due Date</label>
+        <input type="date" class="form-control" id="form-task-due">
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" onclick="closeModal('modal-add-task')">Cancel</button>
+        <button class="btn btn-primary" id="form-task-submit">Create Task</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Reminder Modal -->
+  <div class="modal-overlay" id="modal-add-reminder">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Create Quick Reminder</h2>
+        <button class="modal-close" onclick="closeModal('modal-add-reminder')">&times;</button>
+      </div>
+      <div class="form-group">
+        <label>Reminder Text</label>
+        <input type="text" class="form-control" id="form-reminder-text" placeholder="E.g., Reply to Zara sponsorship email...">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Assign To</label>
+          <select class="form-control" id="form-reminder-assignee">
+            <option value="Influencer">Influencer (Sienna)</option>
+            <option value="Assistant">Assistant (Maya)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" class="form-control" id="form-reminder-date">
+        </div>
+      </div>
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" onclick="closeModal('modal-add-reminder')">Cancel</button>
+        <button class="btn btn-primary" id="form-reminder-submit">Add Reminder</button>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add/Log Post Metric Modal -->
+  <div class="modal-overlay" id="modal-add-post">
+    <div class="modal">
+      <div class="modal-header">
+        <h2>Log Post Metrics</h2>
+        <button class="modal-close" onclick="closeModal('modal-add-post')">&times;</button>
+      </div>
+      <div class="form-group">
+        <label>Post Title / Content Summary</label>
+        <input type="text" class="form-control" id="form-post-title" placeholder="E.g., Sephora Lip Oil Review & Rating">
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Platform</label>
+          <select class="form-control" id="form-post-platform">
+            <option value="TikTok">TikTok</option>
+            <option value="Instagram">Instagram</option>
+            <option value="YouTube">YouTube</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Post Date</label>
+          <input type="date" class="form-control" id="form-post-date">
+        </div>
+      </div>
+      
+      <div style="border-top: 1px solid var(--cradle-pink-low); padding-top: 1rem; margin-top: 1rem;">
+        <h3 style="font-size: 0.95rem; margin-bottom: 1rem; font-weight: 600; color: var(--cradle-pink);">Engagement Metrics</h3>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Views</label>
+            <input type="number" class="form-control" id="form-post-views" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label>Likes</label>
+            <input type="number" class="form-control" id="form-post-likes" placeholder="0">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Comments</label>
+            <input type="number" class="form-control" id="form-post-comments" placeholder="0">
+          </div>
+          <div class="form-group">
+            <label>Shares</label>
+            <input type="number" class="form-control" id="form-post-shares" placeholder="0">
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Post Caption & Hashtags</label>
+        <textarea class="form-control" id="form-post-caption" rows="3" placeholder="Paste your caption here..."></textarea>
+      </div>
+      
+      <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+        <button class="btn btn-secondary" onclick="closeModal('modal-add-post')">Cancel</button>
+        <button class="btn btn-primary" id="form-post-submit">Save Post Entry</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Fullscreen Onboarding Overlay Setup Wizard -->
+  <div class="onboarding-overlay" id="onboarding-wizard" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(44, 32, 30, 0.96); backdrop-filter: blur(24px); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease;">
+    <div class="onboarding-card" style="width: 90%; max-width: 550px; background: var(--bg-card); border: 1px solid var(--cradle-pink-mid); border-radius: var(--border-radius-lg); padding: 2.5rem; box-shadow: 0 12px 50px rgba(0,0,0,0.6);">
+      <div style="text-align: center; margin-bottom: 2rem;">
+        <div class="logo-icon" style="margin: 0 auto 1rem; width: 50px; height: 50px;">
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="width:26px; height:26px; fill:var(--white-alyssum);">
+            <path d="M12 3l1.912 5.886h6.19l-5.008 3.638 1.912 5.886L12 14.772l-5.008 3.638 1.912-5.886-5.008-3.638h6.19z" />
+          </svg>
+        </div>
+        <h2 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--white-alyssum), var(--cradle-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lumina Workspace Setup</h2>
+        <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Configure names and platforms for you and your assistant to begin.</p>
+      </div>
+      
+      <div class="form-row" style="margin-bottom: 1.25rem;">
+        <div class="form-group" style="margin-bottom: 0;">
+          <label>Influencer Name</label>
+          <input type="text" class="form-control" id="onboard-influencer-name" value="Sienna">
+        </div>
+        <div class="form-group" style="margin-bottom: 0;">
+          <label>Assistant/Manager Name</label>
+          <input type="text" class="form-control" id="onboard-assistant-name" value="Maya">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Link Social Accounts</label>
+        <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Connecting accounts imports custom posts and real metrics automatically instead of generic fake data.</p>
+        <div id="onboard-connections-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+          <!-- Managed via JavaScript rendering -->
+        </div>
+      </div>
+      
+      <div class="form-group" style="margin-top: 1.5rem;">
+        <label style="display:flex; justify-content:space-between; align-items:center;">
+          <span>Gemini API Key</span>
+          <span style="font-size: 0.75rem; color: var(--fruit-dove);">Optional</span>
+        </label>
+        <input type="password" class="form-control" id="onboard-api-key" placeholder="Paste Gemini API Key (or skip)...">
+      </div>
+      
+      <button class="btn btn-primary" id="onboard-submit-btn" style="width: 100%; justify-content: center; margin-top: 1.5rem; font-size: 1.05rem; padding: 0.9rem;">
+        Launch Workspace ✨
+      </button>
+    </div>
+  </div>
+
+  <!-- Simulated OAuth Account Link Modal -->
+  <div class="modal-overlay" id="modal-oauth-login">
+    <div class="modal" id="oauth-modal-container" style="border-color: var(--fruit-dove); transition: all 0.3s ease; overflow: hidden; padding-top: 1.5rem;">
+      
+      <!-- Fake Browser Top Bar (macOS style) -->
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 0.6rem 1rem; background: rgba(0,0,0,0.25); border-bottom: 1px solid rgba(255,255,255,0.06); margin: -1.5rem -2rem 1.5rem -2rem; position: relative;">
+        <!-- macOS Window dots -->
+        <div style="display: flex; gap: 6px; width: 60px;">
+          <div style="width: 11px; height: 11px; border-radius: 50%; background: #ff5f56; cursor: pointer; display: flex; align-items: center; justify-content: center;" onclick="closeModal('modal-oauth-login')"></div>
+          <div style="width: 11px; height: 11px; border-radius: 50%; background: #ffbd2e;"></div>
+          <div style="width: 11px; height: 11px; border-radius: 50%; background: #27c93f;"></div>
+        </div>
+        <!-- SSL Secure Address Bar -->
+        <div style="background: rgba(0,0,0,0.3); border: 1px solid rgba(255,255,255,0.08); border-radius: 6px; padding: 0.3rem 1.5rem; font-size: 0.72rem; color: #b5b5b5; display: flex; align-items: center; gap: 0.4rem; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; width: 70%; justify-content: center; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; box-shadow: inset 0 1px 3px rgba(0,0,0,0.2);">
+          <span style="color: #5cf5be; font-size: 0.8rem;">🔒</span>
+          <span id="oauth-browser-address-bar" style="opacity: 0.95;">https://auth.tiktok.com/login</span>
+        </div>
+        <div style="width: 60px;"></div>
+      </div>
+
+      <div class="modal-header" style="margin-bottom: 1.25rem;">
+        <h2 id="oauth-modal-title" style="display:flex; align-items:center; gap:0.5rem; font-weight: 800; font-size: 1.35rem;">Link Social Channel</h2>
+        <button class="modal-close" onclick="closeModal('modal-oauth-login')">&times;</button>
+      </div>
+
+      <!-- STEP 1: WAITING FOR EXTERNAL LOGIN -->
+      <div id="oauth-step-login">
+        <div style="text-align: center; margin-bottom: 1.25rem; padding: 0.75rem; border-radius: 8px; background: rgba(239,235,231,0.03);">
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;" id="oauth-modal-desc">
+            A new tab has been opened. Complete your login, then return here.
+          </p>
+        </div>
+        
+        <!-- Pulsing Waiting Indicator -->
+        <div id="oauth-waiting-indicator" style="text-align: center; padding: 1.5rem 0;">
+          <div style="display: inline-block; width: 14px; height: 14px; border-radius: 50%; background: var(--fruit-dove); animation: pulse-glow 1.5s ease-in-out infinite; margin-bottom: 1rem;"></div>
+          <p style="font-size: 0.95rem; font-weight: 600; color: var(--white-alyssum); margin-bottom: 0.25rem;">Waiting for authentication...</p>
+          <p style="font-size: 0.8rem; color: var(--text-muted);" id="oauth-waiting-platform-hint">Complete your login on the platform tab, then click below.</p>
+        </div>
+
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button class="btn btn-secondary" onclick="closeModal('modal-oauth-login')">Cancel</button>
+          <button class="btn btn-primary" id="oauth-login-btn">I've Logged In ✓</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: HANDLE / USERNAME CAPTURE -->
+      <div id="oauth-step-handle" style="display: none;">
+        <div style="text-align: center; margin-bottom: 1.25rem; padding: 0.75rem; border-radius: 8px; background: rgba(239,235,231,0.03);">
+          <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;" id="oauth-handle-desc">
+            Enter your username or handle so we can scan your content.
+          </p>
+        </div>
+        <div class="form-group">
+          <label id="oauth-label-username">Your Username / Handle</label>
+          <input type="text" class="form-control" id="oauth-username-input" placeholder="E.g., @sienna_style">
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 0.75rem; margin-top: 1.5rem;">
+          <button class="btn btn-secondary" onclick="closeModal('modal-oauth-login')">Cancel</button>
+          <button class="btn btn-primary" id="oauth-scan-btn">Scan & Import</button>
+        </div>
+      </div>
+
+      <!-- STEP 2: CONSENT / AUTHORIZATION -->
+      <div id="oauth-step-auth" style="display: none;">
+        <div style="text-align: center; margin-bottom: 1.5rem;">
+          <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">🔑</div>
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: var(--white-alyssum);">Authorization Request</h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.5rem; line-height: 1.4;">
+            <strong style="color: var(--white-alyssum);">Lumina Hub</strong> wants permission to access your <span id="oauth-auth-platform-name">Platform</span> Creator Profile.
+          </p>
+        </div>
+        
+        <div style="background: rgba(239, 235, 231, 0.03); border: 1px solid var(--cradle-pink-low); border-radius: 8px; padding: 1rem; margin-bottom: 1.5rem;">
+          <div style="font-size: 0.8rem; font-weight: 700; color: var(--cradle-pink); margin-bottom: 0.5rem; text-transform: uppercase; letter-spacing: 0.5px;">Permissions Requested:</div>
+          <ul style="font-size: 0.85rem; color: var(--text-secondary); padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.4rem; list-style-type: disc;">
+            <li>Read basic profile details and content handle</li>
+            <li>Import recent published media and social feed items</li>
+            <li>Read post metrics (Views, Likes, Comments, Shares)</li>
+          </ul>
+        </div>
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: 1.5rem;">
+          <button class="btn btn-outline" style="border-color: var(--deep-claret); color: var(--deep-claret);" id="oauth-auth-deny-btn">Deny</button>
+          <button class="btn btn-primary" id="oauth-auth-grant-btn">Authorize & Sync</button>
+        </div>
+      </div>
+
+      <!-- STEP 3: SYNC STATUS -->
+      <div id="oauth-step-syncing" style="display: none;">
+        <div style="text-align: center; padding: 1.5rem 0;">
+          <div class="sync-spinner" style="width: 50px; height: 50px; border: 4px solid var(--cradle-pink-low); border-top: 4px solid var(--fruit-dove); border-radius: 50%; animation: spin 1s linear infinite; margin: 0 auto 1.5rem;"></div>
+          <div style="font-weight: 700; font-size: 1.1rem; color: var(--white-alyssum); margin-bottom: 0.5rem;" id="oauth-sync-text">Establishing secure handshake...</div>
+          <div style="font-size: 0.85rem; color: var(--text-muted);" id="oauth-sync-subtext">Connecting to Platform API...</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/db.js"></script>
+  <script src="js/ai.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Global helper to close modals
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+  </script>
+</body>
+</html>
