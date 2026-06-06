@@ -423,6 +423,22 @@
             </select>
           </div>
 
+          <div class="form-group" style="padding: 1.25rem; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--cradle-pink-low); border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
+            <label style="color: var(--white-alyssum); font-weight: 700; margin-bottom: 0.5rem; display: block;">Workspace Collaboration</label>
+            <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Share this code with your partner to sync tasks, settings, and social connections in real-time.</p>
+            <div style="display: flex; gap: 0.75rem; align-items: center; margin-bottom: 1rem;">
+              <div style="background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 700; font-family: monospace; font-size: 1rem; color: var(--cradle-pink);" id="settings-share-code">LUMINA-XXXX</div>
+              <button class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.75rem;" onclick="navigator.clipboard.writeText(state.settings.workspaceId || ''); alert('Workspace Code copied to clipboard!');">Copy Code</button>
+            </div>
+            <div style="border-top: 1px solid rgba(255,255,255,0.06); padding-top: 0.75rem;">
+              <label style="font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 0.4rem;">Connect to another Workspace:</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" class="form-control" id="settings-join-code" placeholder="Enter workspace code..." style="font-size:0.8rem; text-transform:uppercase;">
+                <button class="btn btn-secondary" id="settings-join-btn" style="padding: 0.5rem 1rem; font-size:0.8rem; white-space:nowrap;">Sync & Link</button>
+              </div>
+            </div>
+          </div>
+
           <div class="form-group">
             <label>Linked Social Media Accounts</label>
             <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Connect accounts to dynamically import real metrics and populate your dashboard.</p>
@@ -618,6 +634,16 @@
           <!-- Managed via JavaScript rendering -->
         </div>
       </div>
+
+      <!-- Workspace Code Sharing integration -->
+      <div style="margin: 1.25rem 0; padding: 1.25rem; background: rgba(255,255,255,0.02); border: 1px dashed var(--cradle-pink-low); border-radius: 8px;">
+        <label style="font-weight:700; font-size:0.85rem; color:var(--white-alyssum); display:block; margin-bottom:0.5rem;">Join Existing Shared Workspace?</label>
+        <p style="font-size: 0.72rem; color: var(--text-secondary); margin-bottom:0.75rem;">If your partner has already set up the workspace, enter their Workspace Code to instantly sync all data.</p>
+        <div style="display: flex; gap: 0.5rem;">
+          <input type="text" class="form-control" id="onboard-join-code" placeholder="E.g., LUMINA-4821" style="font-size:0.8rem; text-transform:uppercase;">
+          <button class="btn btn-secondary" id="onboard-join-btn" style="padding: 0.5rem 1rem; font-size:0.8rem; white-space:nowrap;">Link & Sync</button>
+        </div>
+      </div>
       
       <div class="form-group" style="margin-top: 1.5rem;">
         <label style="display:flex; justify-content:space-between; align-items:center;">
@@ -735,6 +761,7 @@
 
 
   <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="js/db.js"></script>
   <script src="js/ai.js"></script>
   <script src="js/app.js"></script>

@@ -2,9 +2,12 @@
  * Lumina Hub - Core Application Logic
  */
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
   // 1. Initialize State and UI Bindings
   initApp();
+
+  // Initialize Supabase shared sync engine
+  await db.initSupabase();
   
   // 2. Set Up Navigation Events
   setupNavigation();
@@ -101,10 +104,28 @@ function initApp() {
 
 function setupOnboardingEvents() {
   const submitBtn = document.getElementById('onboard-submit-btn');
+  const joinBtn = document.getElementById('onboard-join-btn');
+  const joinCodeInput = document.getElementById('onboard-join-code');
   if (!submitBtn) return;
   
   // Render the connections list inside the onboarding wizard card
   renderConnectionsList('onboard-connections-list');
+
+  // Handle Joining Existing Workspace Code
+  if (joinBtn && joinCodeInput) {
+    joinBtn.addEventListener('click', async () => {
+      const code = joinCodeInput.value.trim().toUpperCase();
+      if (!code) {
+        alert("Please enter a workspace code!");
+        return;
+      }
+      const success = await db.joinWorkspace(code);
+      if (success) {
+        alert(`Joined workspace ${code} successfully!`);
+        window.location.reload(); // Reload to populate everything
+      }
+    });
+  }
 
   submitBtn.addEventListener('click', () => {
     const influencerName = document.getElementById('onboard-influencer-name').value.trim() || 'Sienna';
@@ -1316,6 +1337,29 @@ function setupStudioHandlers() {
 // 6. WORKSPACE SETTINGS
 function setupSettingsHandlers() {
   const saveBtn = document.getElementById('settings-save-btn');
+  const joinBtn = document.getElementById('settings-join-btn');
+  const joinCodeInput = document.getElementById('settings-join-code');
+  const shareCodeDiv = document.getElementById('settings-share-code');
+  
+  if (shareCodeDiv && state.settings.workspaceId) {
+    shareCodeDiv.innerText = state.settings.workspaceId;
+  }
+
+  if (joinBtn && joinCodeInput) {
+    joinBtn.addEventListener('click', async () => {
+      const code = joinCodeInput.value.trim().toUpperCase();
+      if (!code) {
+        alert("Please enter a workspace code!");
+        return;
+      }
+      const success = await db.joinWorkspace(code);
+      if (success) {
+        alert(`Joined workspace ${code} successfully!`);
+        window.location.reload();
+      }
+    });
+  }
+
   if (!saveBtn) return;
 
   saveBtn.addEventListener('click', () => {
