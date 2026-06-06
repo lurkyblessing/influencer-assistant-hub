@@ -642,17 +642,11 @@
 
   <!-- Fullscreen Onboarding Overlay Setup Wizard -->
   <div class="onboarding-overlay" id="onboarding-wizard" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: rgba(44, 32, 30, 0.96); backdrop-filter: blur(24px); z-index: 9999; display: flex; justify-content: center; align-items: center; transition: all 0.3s ease;">
-    <div class="onboarding-card" style="width: 90%; max-width: 550px; background: var(--bg-card); border: 1px solid var(--cradle-pink-mid); border-radius: var(--border-radius-lg); padding: 2.5rem; box-shadow: 0 12px 50px rgba(0,0,0,0.6);">
+    <div class="onboarding-card" style="width: 90%; max-width: 450px; background: var(--bg-card); border: var(--border-thick); border-radius: var(--border-radius-lg); padding: 2rem; box-shadow: var(--shadow-retro-dark); max-height: 90vh; overflow-y: auto;">
       <div style="text-align: center; margin-bottom: 2rem;">
-        <div class="logo-icon" style="margin: 0 auto 1rem; width: 50px; height: 50px;">
-          <svg viewBox="0 0 24 24" fill="none" stroke="var(--white-alyssum)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" style="width:36px; height:36px;">
-            <path d="M12 3c0 4.97 4.03 9 9 9-4.97 0-9 4.03-9 9 0-4.97-4.03-9-9-9 4.03 0 9-4.03 9-9z" />
-          </svg>
-        </div>
-        <h2 style="font-size: 1.8rem; font-weight: 800; background: linear-gradient(135deg, var(--white-alyssum), var(--cradle-pink)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Lumina Workspace Setup</h2>
+        <h2 style="font-size: 1.8rem; font-weight: 800; font-family: 'Syne', sans-serif; color: var(--fruit-dove);">Workspace Setup</h2>
         <p style="color: var(--text-secondary); font-size: 0.95rem; margin-top: 0.5rem;">Configure names and platforms for you and your assistant to begin.</p>
       </div>
-      
       <div class="form-row" style="margin-bottom: 1.25rem;">
         <div class="form-group" style="margin-bottom: 0;">
           <label>Influencer Name</label>
