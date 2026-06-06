@@ -2,25 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&display=swap');
 
 :root {
-  /* Original Pantone Color Palette flipped to a High-Contrast Light Theme */
-  --bg-dark: #FAF6F4;         /* Soothing Pantone warm cream/off-white background */
-  --bg-card: #FFFFFF;         /* Crisp clean white for cards */
-  --java-solid: #EFEBE7;      /* Warm clay-cream separator */
+  /* Original Pantone Color Palette - Restore dark brown background */
+  --bg-dark: #2c201e;         /* Deeper version of Java for primary background */
+  --bg-card: rgba(67, 51, 49, 0.45); /* Java base with opacity for glassmorphism */
+  --java-solid: #433331;      /* Java solid */
   --fruit-dove: #CF5C78;      /* Vibrant rose pink accents */
-  --deep-claret: #973443;     /* Deep claret outreach/action red */
-  --cradle-pink: #EDD0DD;     /* Soft pink highlights */
-  --white-alyssum: #2C201E;   /* Deep chocolate dark brown primary text for readability */
+  --deep-claret: #973443;     /* Deep wine red */
+  --cradle-pink: #EDD0DD;     /* Soft pale pink */
+  --white-alyssum: #EFEBE7;   /* Warm off-white primary text */
   
   /* Semi-transparent variations */
-  --fruit-dove-glow: rgba(207, 92, 120, 0.08);
-  --deep-claret-glow: rgba(151, 52, 67, 0.08);
-  --cradle-pink-low: rgba(44, 32, 30, 0.08);
-  --cradle-pink-mid: rgba(44, 32, 30, 0.15);
+  --fruit-dove-glow: rgba(207, 92, 120, 0.2);
+  --deep-claret-glow: rgba(151, 52, 67, 0.35);
+  --cradle-pink-low: rgba(237, 208, 221, 0.12);
+  --cradle-pink-mid: rgba(237, 208, 221, 0.3);
   
   /* Text colors */
-  --text-primary: #2C201E;    /* Deep chocolate dark brown */
-  --text-secondary: rgba(44, 32, 30, 0.75);
-  --text-muted: rgba(44, 32, 30, 0.45);
+  --text-primary: #EFEBE7;
+  --text-secondary: rgba(239, 235, 231, 0.78);
+  --text-muted: rgba(239, 235, 231, 0.45);
   
   /* Layout */
   --sidebar-width: 260px;
@@ -64,8 +64,8 @@ h1, h2, h3, h4, .logo-text, .page-header h1 {
 body {
   background-color: var(--bg-dark);
   background-image: 
-    radial-gradient(at 10% 10%, rgba(207, 92, 120, 0.08) 0px, transparent 45%),
-    radial-gradient(at 85% 85%, rgba(151, 52, 67, 0.06) 0px, transparent 45%);
+    radial-gradient(at 10% 10%, rgba(207, 92, 120, 0.15) 0px, transparent 45%),
+    radial-gradient(at 85% 85%, rgba(151, 52, 67, 0.2) 0px, transparent 45%);
   background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
@@ -84,7 +84,7 @@ body {
 /* Sidebar transformed into a Top clean Header Navigation */
 .sidebar {
   width: 100%;
-  background: rgba(250, 246, 244, 0.95);
+  background: rgba(44, 32, 30, 0.95); /* Matches dark brown background */
   backdrop-filter: blur(20px);
   border-bottom: 1.5px solid var(--java-solid);
   border-right: none;
@@ -306,11 +306,11 @@ body {
 
 /* Glassmorphic Panel Cards */
 .card {
-  background: #FFFFFF;
-  border: 1px solid var(--java-solid);
+  background: var(--bg-card);
+  border: 1.5px solid var(--java-solid);
   border-radius: var(--border-radius-lg);
   padding: 2.25rem;
-  box-shadow: 0 4px 30px rgba(44, 32, 30, 0.02);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
@@ -319,7 +319,7 @@ body {
 .card:hover {
   border-color: var(--fruit-dove);
   transform: translateY(-2px);
-  box-shadow: 0 8px 35px rgba(207, 92, 120, 0.05);
+  box-shadow: 0 12px 48px rgba(207, 92, 120, 0.08);
 }
 
 /* Dashboard Grid Layout */
@@ -347,21 +347,21 @@ body {
 }
 
 .kpi-card {
-  background: #FFFFFF;
-  border: 1px solid var(--java-solid);
+  background: var(--bg-card);
+  border: 1.5px solid var(--java-solid);
   border-radius: var(--border-radius-md);
   padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  box-shadow: 0 4px 20px rgba(44, 32, 30, 0.02);
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.15);
   transition: var(--transition-smooth);
 }
 
 .kpi-card:hover {
   transform: translateY(-2px);
   border-color: var(--cradle-pink);
-  box-shadow: 0 8px 25px rgba(44, 32, 30, 0.04);
+  box-shadow: 0 10px 32px rgba(237, 208, 221, 0.05);
 }
 
 .kpi-title {
@@ -652,8 +652,8 @@ body {
 
 .form-control {
   width: 100%;
-  background: #FFFFFF;
-  border: 1px solid var(--cradle-pink-low);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1.5px solid var(--java-solid);
   border-radius: var(--border-radius-sm);
   padding: 0.75rem 1rem;
   color: var(--text-primary);
@@ -665,7 +665,7 @@ body {
 .form-control:focus {
   border-color: var(--fruit-dove);
   box-shadow: 0 0 8px var(--fruit-dove-glow);
-  background: #FFFFFF;
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .form-row {
@@ -689,8 +689,8 @@ body {
 
 .ai-output-card {
   flex-grow: 1;
-  background: #FFFFFF;
-  border: 1px dashed var(--cradle-pink-mid);
+  background: rgba(44, 32, 30, 0.4);
+  border: 1.5px dashed var(--java-solid);
   border-radius: var(--border-radius-lg);
   padding: 1.5rem;
   min-height: 350px;
@@ -836,7 +836,7 @@ body {
 }
 
 .analytics-list-table tr:hover td {
-  background: rgba(44, 32, 30, 0.02);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 /* Post Planner & Calendar */
@@ -855,8 +855,8 @@ body {
 }
 
 .calendar-cell {
-  background: #FFFFFF;
-  border: 1px solid var(--cradle-pink-low);
+  background: rgba(44, 32, 30, 0.4);
+  border: 1.5px solid var(--java-solid);
   border-radius: var(--border-radius-sm);
   min-height: 110px;
   padding: 0.5rem;
