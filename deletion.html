@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Data Deletion Instructions - Lumina Hub</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background: #1e1919;
+      color: #efebe7;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 3rem 1.5rem;
+      font-family: 'Outfit', sans-serif;
+    }
+    .page-container {
+      width: 100%;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--cradle-pink-low);
+      border-radius: var(--border-radius-lg);
+      padding: 3rem;
+      box-shadow: 0 20px 80px rgba(0,0,0,0.5);
+    }
+    .logo-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .logo-icon {
+      width: 48px;
+      height: 48px;
+    }
+    .logo-text {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--white-alyssum);
+    }
+    h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(135deg, var(--white-alyssum), var(--cradle-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .last-updated {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 2rem;
+    }
+    h2 {
+      font-size: 1.25rem;
+      color: var(--white-alyssum);
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      font-weight: 700;
+      border-left: 3px solid var(--cradle-pink);
+      padding-left: 0.75rem;
+    }
+    p, li {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.25rem;
+    }
+    a {
+      color: var(--cradle-pink);
+      text-decoration: none;
+      transition: opacity 0.2s;
+    }
+    a:hover {
+      opacity: 0.8;
+    }
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
+    .delete-card {
+      background: rgba(207, 92, 120, 0.05);
+      border: 1px solid rgba(207, 92, 120, 0.2);
+      border-radius: 8px;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-container">
+    <div class="logo-header">
+      <div class="logo-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="var(--cradle-pink)" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
+          <path d="M12 3c0 4.97 4.03 9 9 9-4.97 0-9 4.03-9 9 0-4.97-4.03-9-9-9 4.03 0 9-4.03 9-9z" />
+        </svg>
+      </div>
+      <div class="logo-text">Lumina Hub</div>
+    </div>
+
+    <h1>Data Deletion Instructions</h1>
+    <div class="last-updated">Last Updated: June 6, 2026</div>
+
+    <p>Lumina Hub values your control over your data. In compliance with Facebook (Meta), Google, and TikTok developer requirements, we provide this guide and self-service option to purge your workspace information.</p>
+
+    <h2>How We Process Your Data</h2>
+    <p>Lumina Hub stores all workspace records, connected account settings, planning posts, and tokens directly inside your local web browser database (LocalStorage). We do not collect, transmit, or retain this data on external servers.</p>
+
+    <h2>Option 1: Self-Service Deletion (Immediate Purge)</h2>
+    <p>Clicking the button below will wipe all local data records associated with Lumina Hub from your browser storage, including settings, active posts, linked channels, and access tokens.</p>
+
+    <div class="delete-card">
+      <h3 style="color: var(--white-alyssum); margin-bottom: 0.5rem; font-weight: 700;">Clear Local Workspace Cache</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 1rem;">Warning: This action is permanent and cannot be undone.</p>
+      <button class="btn" style="background: var(--deep-claret); color: white; border: none; padding: 0.7rem 1.5rem; border-radius: 6px; font-weight: 600; cursor: pointer;" onclick="clearLocalStorage()">
+        Wipe All Workspace Data
+      </button>
+    </div>
+
+    <h2>Option 2: Revoking Third-Party App Permissions</h2>
+    <p>If you linked TikTok, Instagram, or YouTube accounts and wish to revoke API access credentials on the platform's side:
+      <ul>
+        <li><strong>Instagram/Facebook</strong>: Go to your Facebook Account Settings > Apps and Websites > Find **Lumina Hub** > Click **Remove**.</li>
+        <li><strong>Google (YouTube)</strong>: Access Google Account Settings > Security > Third-party apps with account access > Find **Lumina Hub** > Click **Remove Access**.</li>
+        <li><strong>TikTok</strong>: Go to TikTok Settings > Security and Login > Manage app access > Find **Lumina Hub** > Click **Remove Access**.</li>
+      </ul>
+    </p>
+
+    <div style="text-align: center;">
+      <a href="index.html" class="back-btn">
+        ← Back to Workspace
+      </a>
+    </div>
+  </div>
+
+  <script>
+    function clearLocalStorage() {
+      if (confirm("Are you sure you want to delete all cached settings, tasks, and connected social media profiles? This will completely reset your workspace.")) {
+        localStorage.clear();
+        alert("All local workspace database files have been successfully purged.");
+        window.location.href = "index.html";
+      }
+    }
+  </script>
+</body>
+</html>
