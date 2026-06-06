@@ -12,65 +12,48 @@
   
   <div class="app-container">
     
-    <!-- Sidebar Navigation -->
-    <aside class="sidebar">
+    <!-- Decorative Floating Stickers for Retro-Pop Vibe -->
+    <div class="floating-stickers">
+      <div class="sticker sticker-star" style="position:absolute; top:120px; left:5%; animation: float 6s ease-in-out infinite;">
+        <svg width="40" height="40" viewBox="0 0 24 24" fill="var(--accent-yellow)" stroke="var(--bg-dark)" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+      </div>
+      <div class="sticker sticker-pill" style="position:absolute; top:250px; right:8%; transform:rotate(15deg); animation: float 8s ease-in-out infinite alternate;">
+        <div style="background:var(--accent-blue); border:3px solid var(--bg-dark); border-radius:30px; padding:5px 15px; font-weight:800; font-family:'Syne', sans-serif; color:var(--bg-dark); box-shadow:4px 4px 0 0 var(--fruit-dove);">GLOSSY</div>
+      </div>
+    </div>
+
+    <!-- Top Header Navigation (formerly sidebar) -->
+    <header class="sidebar">
       <div class="logo-container">
         <div class="logo-icon">
-          <!-- Elegant Modern Sparkle Star SVG -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
-            <path d="M12 3c0 4.97 4.03 9 9 9-4.97 0-9 4.03-9 9 0-4.97-4.03-9-9-9 4.03 0 9-4.03 9-9z" />
+          <!-- Fun Y2K Sparkle -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
           </svg>
         </div>
-        <span class="logo-text">Lumina Hub</span>
+        <span class="logo-text">Lumina</span>
       </div>
       
       <ul class="nav-menu">
         <li class="nav-item active" data-tab="dashboard">
-          <button>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="14" y="12" width="7" height="9" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
-            Dashboard
-          </button>
+          <button>Dashboard</button>
         </li>
         <li class="nav-item" data-tab="tasks">
-          <button>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
-            Task Board
-          </button>
+          <button>Task Board</button>
         </li>
         <li class="nav-item" data-tab="planner">
-          <button>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            Post Planner
-          </button>
+          <button>Content Planner</button>
         </li>
         <li class="nav-item" data-tab="insights">
-          <button>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
-            AI Insights
-          </button>
+          <button>AI Insights</button>
         </li>
         <li class="nav-item" data-tab="studio">
-          <button>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="sparkle-icon"><path d="M9.82 2.82a.6.6 0 0 0-1.04 0L7.14 5.92A3.2 3.2 0 0 1 4.7 7.35L1.6 8.35a.6.6 0 0 0 0 1.13l3.1.98a3.2 3.2 0 0 1 2.45 1.44l1.64 3.08a.6.6 0 0 0 1.04 0l1.64-3.08A3.2 3.2 0 0 1 14 9.48l3.1-.98a.6.6 0 0 0 0-1.13l-3.1-.98a3.2 3.2 0 0 1-2.45-1.44L9.82 2.82zm8 11a.4.4 0 0 0-.7 0l-1.08 2.04a2.1 2.1 0 0 1-1.6 1l-2.03.65a.4.4 0 0 0 0 .76l2.03.65a2.1 2.1 0 0 1 1.6 1l1.08 2.04c.12.23.48.23.6 0l1.08-2.04a2.1 2.1 0 0 1 1.6-1l2.03-.65a.4.4 0 0 0 0-.76l-2.03-.65a2.1 2.1 0 0 1-1.6-1l-1.08-2.04z"/></svg>
-            AI Content Studio
-          </button>
+          <button>AI Content Studio</button>
         </li>
         <li class="nav-item" data-tab="settings">
-          <button>
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            Settings
-          </button>
+          <button>Settings</button>
         </li>
       </ul>
-      
-      <!-- Privacy & Terms links -->
-      <div style="margin-top: auto; padding: 0.75rem 0; font-size: 0.65rem; text-align: center; display: flex; justify-content: center; gap: 0.4rem; border-top: 1px solid var(--cradle-pink-low); opacity: 0.85; margin-bottom: 0.75rem; flex-wrap: wrap;">
-        <a href="privacy.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Privacy Policy</a>
-        <span style="color: var(--text-muted);">•</span>
-        <a href="terms.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Terms of Service</a>
-        <span style="color: var(--text-muted);">•</span>
-        <a href="deletion.html" style="color: var(--text-muted); text-decoration: none; transition: color 0.2s;" onmouseover="this.style.color='var(--cradle-pink)'" onmouseout="this.style.color='var(--text-muted)'">Data Deletion</a>
-      </div>
       
       <div class="user-profile">
         <div class="user-avatar" id="active-user-avatar">S</div>
@@ -79,22 +62,26 @@
           <span class="user-role" id="active-user-role">Influencer</span>
         </div>
       </div>
-    </aside>
+    </header>
     
     <!-- Main Content Panel -->
-    <main class="main-content">
+    <main class="main-content" style="position:relative; z-index:10;">
       
       <!-- 1. Dashboard Tab -->
       <section id="tab-dashboard" class="tab-pane active">
-        <div class="page-header">
+        <div class="page-header" style="position:relative; overflow:hidden;">
           <div class="header-title">
-            <h1 id="dashboard-welcome">Hey Sienna,</h1>
-            <p id="dashboard-subtitle">Here's what you and Maya have lined up for today.</p>
+            <h1 id="dashboard-welcome">hey, sienna ✨</h1>
+            <p id="dashboard-subtitle">Here is what you and Maya have lined up for today.</p>
           </div>
           <div class="header-actions">
             <button class="btn btn-secondary" id="dashboard-toggle-role">View as Assistant</button>
             <button class="btn btn-primary" id="dashboard-new-reminder">+ Add Reminder</button>
           </div>
+          
+          <svg style="position:absolute; right:-50px; bottom:-50px; opacity:0.3;" width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <path fill="var(--fruit-dove)" d="M44.7,-76.4C58.3,-69.2,70.1,-58.3,80.1,-45.3C90.1,-32.3,98.2,-17.2,96.5,-2.6C94.8,11.9,83.3,25.9,71.2,36.5C59.1,47.1,46.3,54.4,33.5,60.5C20.7,66.6,7.8,71.6,-5.5,80C-18.8,88.4,-32.5,100.2,-43.3,96.3C-54.1,92.4,-61.9,72.8,-70.7,56.7C-79.5,40.6,-89.2,28.1,-93.2,13.8C-97.2,-0.5,-95.4,-16.6,-88,-30.3C-80.6,-44,-67.5,-55.2,-53.4,-62.4C-39.3,-69.6,-24.1,-72.7,-8.6,-73.4C6.9,-74.1,22.4,-72.4,31.1,-83.6C35.6,-87.3,40.5,-80.7,44.7,-76.4Z" transform="translate(100 100) scale(1.1)" />
+          </svg>
         </div>
         
         <!-- KPI Row -->
@@ -124,38 +111,43 @@
         <!-- Dashboard Content Grid -->
         <div class="dashboard-grid">
           <!-- Quick Reminders -->
-          <div class="card">
-            <h2 class="card-title" style="margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">Reminders & Alerts</h2>
+          <div class="card dashboard-card-narrow">
+            <h2 class="card-title" style="margin-bottom: 1rem; font-weight: 800; font-family: 'Syne', sans-serif; font-size: 1.5rem;">Reminders & Alerts</h2>
             <div class="reminders-list" id="dashboard-reminders-list">
               <!-- Rendered dynamically -->
+            </div>
+            <!-- Decorative mini sticker -->
+            <div style="position:absolute; bottom:20px; right:20px; opacity:0.6; transform:rotate(-10deg);">
+              <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--cradle-pink)" stroke-width="3"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
             </div>
           </div>
           
           <!-- Today's Content Plan -->
-          <div class="card dashboard-card-wide">
-            <h2 class="card-title" style="margin-bottom: 1rem; font-weight: 700; font-size: 1.25rem;">Active Social Posts & Content</h2>
-            <div class="content-plan-summary" style="display: flex; flex-direction: column; gap: 1rem;">
-              <p style="color: var(--text-secondary); font-size: 0.95rem;">Review and track visual media, click to add/update live post engagement stats.</p>
-              <div id="dashboard-recent-posts" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+          <div class="card dashboard-card-wide" style="background: var(--cradle-pink); color: var(--bg-dark); border-color: var(--bg-dark);">
+            <h2 class="card-title" style="margin-bottom: 1rem; font-weight: 800; font-family: 'Syne', sans-serif; font-size: 1.5rem;">Active Social Posts</h2>
+            <div class="content-plan-summary" style="display: flex; flex-direction: column; gap: 1rem; position:relative; z-index:2;">
+              <p style="font-size: 0.95rem; font-weight:600; opacity:0.8;">Review and track visual media, click to add live engagement stats.</p>
+              <div id="dashboard-recent-posts" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                 <!-- Rendered dynamically -->
               </div>
             </div>
           </div>
           
           <!-- Quick AI Insights Banner -->
-          <div class="card dashboard-card-full" style="background: linear-gradient(135deg, rgba(207, 92, 120, 0.15) 0%, rgba(151, 52, 67, 0.25) 100%); border-color: var(--fruit-dove);">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
+          <div class="card dashboard-card-full" style="background: var(--fruit-dove); border-color: var(--bg-dark); color: var(--bg-dark);">
+            <div style="display: flex; justify-content: space-between; align-items: center; position:relative; z-index:2;">
               <div>
-                <h3 style="font-size: 1.2rem; font-weight: 700; color: var(--white-alyssum); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
-                  <svg viewBox="0 0 24 24" width="20" height="20" stroke="var(--fruit-dove)" stroke-width="2" fill="none" class="sparkle-icon" style="margin-right:4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                <h3 style="font-size: 1.6rem; font-weight: 800; font-family: 'Syne', sans-serif; display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem;">
+                  <svg viewBox="0 0 24 24" width="28" height="28" stroke="var(--bg-dark)" stroke-width="3" fill="none" class="sparkle-icon" style="margin-right:4px;"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
                   Latest AI Engagement Trend
                 </h3>
-                <p id="dashboard-ai-insights-snippet" style="font-size: 0.95rem; color: var(--text-secondary); line-height: 1.5;">
+                <p id="dashboard-ai-insights-snippet" style="font-size: 1.05rem; font-weight: 600; opacity:0.9; line-height: 1.5;">
                   Analyzing logged posts... Click "AI Insights" tab to run a deep strategic analysis.
                 </p>
               </div>
-              <button class="btn btn-primary" id="dashboard-to-insights-btn" style="flex-shrink: 0;">View Full Analysis</button>
+              <button class="btn btn-outline" id="dashboard-to-insights-btn" style="flex-shrink: 0; background:var(--cradle-pink); color:var(--bg-dark); border-color:var(--bg-dark); box-shadow: 4px 4px 0 0 var(--bg-dark);">View Full Analysis</button>
             </div>
+            <svg style="position:absolute; left:-20px; top:-40px; opacity:0.2;" width="150" height="150" viewBox="0 0 24 24" fill="none" stroke="var(--bg-dark)" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/><path d="M2 12h20"/></svg>
           </div>
         </div>
       </section>
