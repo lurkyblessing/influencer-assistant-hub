@@ -9,6 +9,17 @@ const ai = {
     const settings = db.getSettings();
     const apiKey = settings.geminiApiKey;
 
+    let creatorContext = "";
+    if (settings.creatorNiche || settings.creatorAudience || settings.creatorGoals) {
+      creatorContext = "\n\nCRITICAL CONTEXT - CREATOR PROFILE:\n";
+      if (settings.creatorNiche) creatorContext += `- Content Niche/Topic: ${settings.creatorNiche.replace('_', ' ')}\n`;
+      if (settings.creatorAudience) creatorContext += `- Target Audience Details: ${settings.creatorAudience}\n`;
+      if (settings.creatorGoals) creatorContext += `- Brand Goals/Focus: ${settings.creatorGoals}\n`;
+      creatorContext += "\nPlease incorporate this context into your recommendations naturally.";
+    }
+    
+    const finalSystemInstruction = (systemInstruction + creatorContext).trim();
+
     try {
       const response = await fetch('/api/ai/generate', {
         method: 'POST',
@@ -16,7 +27,7 @@ const ai = {
           'Content-Type': 'application/json',
           ...(apiKey ? { 'x-gemini-api-key': apiKey } : {})
         },
-        body: JSON.stringify({ prompt, systemInstruction })
+        body: JSON.stringify({ prompt, systemInstruction: finalSystemInstruction })
       });
 
       if (!response.ok) {
@@ -34,12 +45,15 @@ const ai = {
 
   // Fallback generator for studio tools
   fallbackGenerate(prompt) {
+    const settings = db.getSettings();
+    const niche = (settings.creatorNiche || 'fashion_beauty').replace('_', ' ');
     const p = prompt.toLowerCase();
     
     if (p.includes("hook") || p.includes("script")) {
       return `✨ AI-Generated Video Outline & Hooks ✨
 
 💡 Video Title Concept: ${prompt.slice(0, 50)}...
+🎯 Tailored for: ${niche.toUpperCase()} Audience
 
 🔥 3 HIGH-CONVERTING HOOK OPTIONS:
 1. "The exact reason your [Topic] is failing, and the 5-second fix nobody is talking about..."
