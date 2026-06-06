@@ -2,25 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  /* Senso Inspired Color Palette */
-  --bg-dark: #FAF8F6;         /* Soft, calming cream white background */
-  --bg-card: #FFFFFF;         /* Crisp clinical white for cards */
-  --java-solid: #F3ECE7;      /* Warm clay-cream tone */
-  --fruit-dove: #7FA08C;      /* Calming, clinical sage green */
-  --deep-claret: #D18D7F;     /* Muted healthy terracotta/peach accent */
-  --cradle-pink: #E9DAD1;     /* Soft warm blush highlight */
-  --white-alyssum: #242927;   /* Clean slate dark charcoal for primary text */
+  /* Original Pantone Color Palette */
+  --bg-dark: #2c201e;         /* Deeper version of Java for primary background */
+  --bg-card: rgba(67, 51, 49, 0.45); /* Java base with opacity for glassmorphism */
+  --java-solid: #433331;      /* Java solid */
+  --fruit-dove: #CF5C78;      /* Vibrant rose pink */
+  --deep-claret: #973443;     /* Deep wine red */
+  --cradle-pink: #EDD0DD;     /* Soft pale pink */
+  --white-alyssum: #EFEBE7;   /* Warm off-white */
   
   /* Semi-transparent variations */
-  --fruit-dove-glow: rgba(127, 160, 140, 0.15);
-  --deep-claret-glow: rgba(209, 141, 127, 0.15);
-  --cradle-pink-low: rgba(0, 0, 0, 0.06);
-  --cradle-pink-mid: rgba(0, 0, 0, 0.12);
+  --fruit-dove-glow: rgba(207, 92, 120, 0.15);
+  --deep-claret-glow: rgba(151, 52, 67, 0.25);
+  --cradle-pink-low: rgba(237, 208, 221, 0.1);
+  --cradle-pink-mid: rgba(237, 208, 221, 0.25);
   
   /* Text colors */
-  --text-primary: #242927;
-  --text-secondary: rgba(36, 41, 39, 0.75);
-  --text-muted: rgba(36, 41, 39, 0.45);
+  --text-primary: #EFEBE7;
+  --text-secondary: rgba(239, 235, 231, 0.7);
+  --text-muted: rgba(239, 235, 231, 0.4);
   
   /* Layout */
   --sidebar-width: 260px;
@@ -36,7 +36,7 @@
   padding: 0;
   font-family: 'Outfit', sans-serif;
   scrollbar-width: thin;
-  scrollbar-color: var(--fruit-dove) var(--java-solid);
+  scrollbar-color: var(--deep-claret) var(--java-solid);
 }
 
 /* Custom scrollbar for Webkit */
@@ -48,7 +48,7 @@
   background: var(--bg-dark);
 }
 ::-webkit-scrollbar-thumb {
-  background: var(--java-solid);
+  background: var(--deep-claret);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
@@ -58,8 +58,8 @@
 body {
   background-color: var(--bg-dark);
   background-image: 
-    radial-gradient(at 0% 0%, rgba(209, 141, 127, 0.06) 0px, transparent 50%),
-    radial-gradient(at 100% 100%, rgba(127, 160, 140, 0.06) 0px, transparent 50%);
+    radial-gradient(at 0% 0%, rgba(207, 92, 120, 0.15) 0px, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(151, 52, 67, 0.15) 0px, transparent 50%);
   background-attachment: fixed;
   color: var(--text-primary);
   min-height: 100vh;
@@ -77,7 +77,7 @@ body {
 /* Sidebar Styling */
 .sidebar {
   width: var(--sidebar-width);
-  background: rgba(255, 255, 255, 0.45);
+  background: rgba(44, 32, 30, 0.85);
   backdrop-filter: blur(20px);
   border-right: 1px solid var(--cradle-pink-low);
   padding: 2rem 1.5rem;
@@ -156,11 +156,11 @@ body {
 .nav-item.active button,
 .nav-item button:hover {
   color: var(--text-primary);
-  background: rgba(127, 160, 140, 0.08);
+  background: rgba(207, 92, 120, 0.08);
 }
 
 .nav-item.active button {
-  background: rgba(127, 160, 140, 0.12);
+  background: rgba(207, 92, 120, 0.12);
   border-left: 3px solid var(--fruit-dove);
 }
 
