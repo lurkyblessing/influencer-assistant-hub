@@ -132,12 +132,19 @@ function setupOnboardingEvents() {
     const assistantName = document.getElementById('onboard-assistant-name').value.trim() || 'Maya';
     const apiKey = document.getElementById('onboard-api-key').value.trim();
     
+    const creatorNiche = document.getElementById('onboard-creator-niche').value;
+    const creatorAudience = document.getElementById('onboard-creator-audience').value.trim();
+    const creatorGoals = document.getElementById('onboard-creator-goals').value.trim();
+    
     // Integrated platforms are derived from connected accounts
     const platforms = Object.keys(state.settings.connections || {});
 
     state.settings.influencerName = influencerName;
     state.settings.assistantName = assistantName;
     state.settings.geminiApiKey = apiKey;
+    state.settings.creatorNiche = creatorNiche;
+    state.settings.creatorAudience = creatorAudience;
+    state.settings.creatorGoals = creatorGoals;
     state.settings.platforms = platforms;
     state.settings.onboarded = true;
 
@@ -539,6 +546,15 @@ function updateActiveUserUI() {
     
     const setApiKey = document.getElementById('settings-api-key');
     if (setApiKey) setApiKey.value = settings.geminiApiKey || '';
+
+    const setNiche = document.getElementById('settings-creator-niche');
+    if (setNiche) setNiche.value = settings.creatorNiche || 'fashion_beauty';
+
+    const setAudience = document.getElementById('settings-creator-audience');
+    if (setAudience) setAudience.value = settings.creatorAudience || '';
+
+    const setGoals = document.getElementById('settings-creator-goals');
+    if (setGoals) setGoals.value = settings.creatorGoals || '';
 
     // Synchronize assignees dropdown labels in creator modals
     const taskAssignee = document.getElementById('form-task-assignee');
@@ -1298,6 +1314,15 @@ function setupStudioHandlers() {
       : 50000;
       
     let contextPrompt = `Context: The influencer name is ${settings.influencerName} and their manager/assistant is ${settings.assistantName}. Tone required: ${tone}. Integrated Channels: ${activePlatforms.join(', ')}. `;
+    if (settings.creatorNiche) {
+      contextPrompt += `Content Niche: ${settings.creatorNiche.replace('_', ' ')}. `;
+    }
+    if (settings.creatorAudience) {
+      contextPrompt += `Target Audience: ${settings.creatorAudience}. `;
+    }
+    if (settings.creatorGoals) {
+      contextPrompt += `Brand Goals: ${settings.creatorGoals}. `;
+    }
     if (tool === 'pitch') {
       contextPrompt += `Average views per post dataset size: ${avgViews}. `;
     }
@@ -1388,6 +1413,10 @@ function setupSettingsHandlers() {
     const tiktokClientId = document.getElementById('settings-tiktok-client-id').value.trim();
     const youtubeClientId = document.getElementById('settings-youtube-client-id').value.trim();
 
+    const creatorNiche = document.getElementById('settings-creator-niche').value;
+    const creatorAudience = document.getElementById('settings-creator-audience').value.trim();
+    const creatorGoals = document.getElementById('settings-creator-goals').value.trim();
+
     state.settings.influencerName = influencerName;
     state.settings.assistantName = assistantName;
     state.settings.activeRole = activeRole;
@@ -1396,6 +1425,9 @@ function setupSettingsHandlers() {
     state.settings.instagramClientId = instagramClientId;
     state.settings.tiktokClientId = tiktokClientId;
     state.settings.youtubeClientId = youtubeClientId;
+    state.settings.creatorNiche = creatorNiche;
+    state.settings.creatorAudience = creatorAudience;
+    state.settings.creatorGoals = creatorGoals;
     
     db.saveSettings(state.settings);
     state.activeUser = activeRole;
@@ -1417,7 +1449,10 @@ function setupSettingsHandlers() {
           geminiApiKey: '',
           onboarded: false,
           connections: {},
-          platforms: []
+          platforms: [],
+          creatorNiche: 'fashion_beauty',
+          creatorAudience: '',
+          creatorGoals: ''
         };
         db.saveSettings(state.settings);
         db.savePosts([]);

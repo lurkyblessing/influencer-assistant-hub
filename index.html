@@ -423,6 +423,31 @@
             </select>
           </div>
 
+          <div style="margin: 1.5rem 0; padding: 1.25rem; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--cradle-pink-low); border-radius: var(--border-radius-md);">
+            <label style="color: var(--white-alyssum); font-weight: 700; margin-bottom: 0.75rem; display: block;">Creator Profile Details (AI Strategy Tuning)</label>
+            
+            <div class="form-group">
+              <label>Content Niche / Focus Area</label>
+              <select class="form-control" id="settings-creator-niche">
+                <option value="fashion_beauty">Fashion & Beauty</option>
+                <option value="lifestyle_vlog">Lifestyle & Travel Vlogs</option>
+                <option value="wellness_fitness">Wellness, Mind & Fitness</option>
+                <option value="tech_productivity">Tech & Personal Productivity</option>
+                <option value="food_cooking">Food, Cafe & Culinary Arts</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Target Audience Demographics</label>
+              <input type="text" class="form-control" id="settings-creator-audience" placeholder="E.g., Gen Z fashion lovers, young professionals">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 0;">
+              <label>Workspace & Brand Goals</label>
+              <input type="text" class="form-control" id="settings-creator-goals" placeholder="E.g., Grow engagement, secure premium sponsorships">
+            </div>
+          </div>
+
           <div class="form-group" style="padding: 1.25rem; background: rgba(255, 255, 255, 0.02); border: 1px solid var(--cradle-pink-low); border-radius: var(--border-radius-md); margin-bottom: 1.5rem;">
             <label style="color: var(--white-alyssum); font-weight: 700; margin-bottom: 0.5rem; display: block;">Workspace Collaboration</label>
             <p style="font-size: 0.75rem; color: var(--text-secondary); margin-bottom: 0.75rem;">Share this code with your partner to sync tasks, settings, and social connections in real-time.</p>
@@ -644,6 +669,32 @@
         <div class="form-group" style="margin-bottom: 0;">
           <label>Assistant/Manager Name</label>
           <input type="text" class="form-control" id="onboard-assistant-name" value="Maya">
+        </div>
+      </div>
+
+      <!-- Creator Profile Questionnaire details -->
+      <div style="margin: 1rem 0; padding: 1rem; background: rgba(255,255,255,0.02); border: 1px solid var(--cradle-pink-low); border-radius: 8px;">
+        <label style="font-weight:700; font-size:0.85rem; color:var(--white-alyssum); display:block; margin-bottom:0.75rem;">Creator Profile Details (For AI Tuning)</label>
+        
+        <div class="form-group">
+          <label style="font-size:0.75rem;">Content Niche / Focus Area</label>
+          <select class="form-control" id="onboard-creator-niche" style="font-size:0.85rem;">
+            <option value="fashion_beauty">Fashion & Beauty</option>
+            <option value="lifestyle_vlog">Lifestyle & Travel Vlogs</option>
+            <option value="wellness_fitness">Wellness, Mind & Fitness</option>
+            <option value="tech_productivity">Tech & Personal Productivity</option>
+            <option value="food_cooking">Food, Cafe & Culinary Arts</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label style="font-size:0.75rem;">Target Audience Demographics</label>
+          <input type="text" class="form-control" id="onboard-creator-audience" placeholder="E.g., Gen Z fashion lovers, young professionals" style="font-size:0.85rem;">
+        </div>
+
+        <div class="form-group" style="margin-bottom:0;">
+          <label style="font-size:0.75rem;">Workspace & Brand Goals</label>
+          <input type="text" class="form-control" id="onboard-creator-goals" placeholder="E.g., Grow engagement, secure premium sponsorships" style="font-size:0.85rem;">
         </div>
       </div>
       

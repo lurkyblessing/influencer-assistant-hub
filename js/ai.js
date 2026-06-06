@@ -119,7 +119,13 @@ For more custom responses tailored exactly to your brand, please add your Gemini
     const apiKey = settings.geminiApiKey;
 
     if (apiKey && apiKey.trim() !== "") {
+      let creatorInfo = "";
+      if (settings.creatorNiche) creatorInfo += `Creator Niche: ${settings.creatorNiche.replace('_', ' ')}. `;
+      if (settings.creatorAudience) creatorInfo += `Target Audience: ${settings.creatorAudience}. `;
+      if (settings.creatorGoals) creatorInfo += `Brand Goals: ${settings.creatorGoals}. `;
+
       const prompt = `Analyze these post metrics and provide an engagement report.
+      Creator Context: ${creatorInfo}
       Posts Data: ${JSON.stringify(posts)}
       
       Format the response strictly in JSON matching this exact structure:
@@ -205,9 +211,21 @@ For more custom responses tailored exactly to your brand, please add your Gemini
     }
 
     // Formulate recommendations
+    const settings = db.getSettings();
+    const cleanNiche = (settings.creatorNiche || 'fashion_beauty').replace('_', ' ');
+    
     recommendations.push(`Double down on the format used in "${bestEng.title}" on ${bestEng.platform} next week.`);
     recommendations.push(`Schedule posts on ${topPlatform} during high-traffic hours to capitalize on natural discovery momentum.`);
-    recommendations.push(`Ask your assistant to draft a script script outline using the AI Hook Builder for a follow-up to "${bestViews.title}".`);
+    
+    if (settings.creatorGoals) {
+      recommendations.push(`Optimize details for your goal: "${settings.creatorGoals}" by verifying visual retention hooks.`);
+    } else {
+      recommendations.push(`Ask your assistant to draft a script outline using the AI Hook Builder for a follow-up to "${bestViews.title}".`);
+    }
+
+    if (settings.creatorNiche) {
+      recommendations.push(`Incorporate trending ${cleanNiche} content formats into next week's calendar schedule.`);
+    }
 
     return {
       overallTrend,
