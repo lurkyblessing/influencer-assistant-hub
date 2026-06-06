@@ -306,45 +306,28 @@ body {
 
 /* Glassmorphic Panel Cards */
 .card {
-  background: linear-gradient(135deg, var(--bg-card) 0%, rgba(44, 32, 30, 0.4) 100%);
-  backdrop-filter: blur(20px);
-  border: 1px solid var(--cradle-pink-low);
+  background: #FFFFFF;
+  border: 1px solid var(--java-solid);
   border-radius: var(--border-radius-lg);
-  padding: 1.75rem;
-  box-shadow: 0 12px 40px 0 rgba(0, 0, 0, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  padding: 2.25rem;
+  box-shadow: 0 4px 30px rgba(44, 32, 30, 0.02);
   transition: var(--transition-smooth);
   position: relative;
   overflow: hidden;
 }
 
-.card::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: linear-gradient(90deg, transparent, var(--fruit-dove-glow), transparent);
-  opacity: 0;
-  transition: var(--transition-smooth);
-}
-
 .card:hover {
-  border-color: rgba(207, 92, 120, 0.35);
-  transform: translateY(-4px) scale(1.01);
-  box-shadow: 0 20px 48px 0 rgba(207, 92, 120, 0.08), 0 12px 40px 0 rgba(0, 0, 0, 0.3);
-}
-
-.card:hover::after {
-  opacity: 1;
+  border-color: var(--fruit-dove);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 35px rgba(207, 92, 120, 0.05);
 }
 
 /* Dashboard Grid Layout */
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 1.75rem;
-  margin-bottom: 2rem;
+  gap: 2rem;
+  margin-bottom: 2.5rem;
 }
 
 .dashboard-card-wide {
@@ -359,27 +342,26 @@ body {
 .kpi-row {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 1.5rem;
-  margin-bottom: 2.5rem;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
 }
 
 .kpi-card {
-  background: linear-gradient(135deg, rgba(67, 51, 49, 0.5) 0%, rgba(44, 32, 30, 0.6) 100%);
-  backdrop-filter: blur(10px);
-  border: 1px solid var(--cradle-pink-low);
+  background: #FFFFFF;
+  border: 1px solid var(--java-solid);
   border-radius: var(--border-radius-md);
-  padding: 1.5rem;
+  padding: 1.75rem;
   display: flex;
   flex-direction: column;
   gap: 0.6rem;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 20px rgba(44, 32, 30, 0.02);
   transition: var(--transition-smooth);
 }
 
 .kpi-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--fruit-dove-glow);
-  box-shadow: 0 12px 32px rgba(207, 92, 120, 0.08);
+  transform: translateY(-2px);
+  border-color: var(--cradle-pink);
+  box-shadow: 0 8px 25px rgba(44, 32, 30, 0.04);
 }
 
 .kpi-title {
