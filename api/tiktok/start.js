@@ -17,9 +17,8 @@ export default async function handler(req, res) {
 
     const cleanHandle = handle.startsWith('@') ? handle.substring(1) : handle;
 
-    // Trigger Apify Actor (shu8/tiktok-scraper is a common lightweight TikTok profile scraper)
-    // You can swap "shu8~tiktok-scraper" with your preferred Apify actor ID
-    const runUrl = `https://api.apify.com/v2/acts/shu8~tiktok-scraper/runs?token=${apifyToken}`;
+    // Trigger Apify Actor (clockworks/tiktok-profile-scraper is the official stable scraper)
+    const runUrl = `https://api.apify.com/v2/acts/clockworks~tiktok-profile-scraper/runs?token=${apifyToken}`;
     
     const runReq = await fetch(runUrl, {
       method: 'POST',
