@@ -258,11 +258,49 @@ window.connectPlatform = function(platform) {
         
         renderAll();
         
-        // Auto trigger AI evaluation
         const insightsBtn = document.getElementById('insights-run-ai-btn');
         if (insightsBtn) insightsBtn.click();
         
         alert('YouTube connected and synced successfully using API Key!');
+      } catch (err) {
+        alert(`Sync Failed: ${err.message}`);
+      }
+    })();
+    return;
+  }
+
+  // Bypassing OAuth completely for Pinterest, using simple prompt & RSS fetch
+  if (platform === 'Pinterest') {
+    const handle = prompt("Enter your Pinterest Username (e.g. sienna_style):");
+    if (!handle) return;
+    
+    (async () => {
+      try {
+        const res = await fetch('/api/pinterest/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ platform, handle })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to sync platform');
+        
+        if (data.posts && data.posts.length > 0) state.posts.push(...data.posts);
+        
+        const displayHandle = handle.startsWith('@') ? handle : '@' + handle;
+        if (!state.settings.connections) state.settings.connections = {};
+        state.settings.connections[platform] = displayHandle;
+        if (!state.settings.platforms) state.settings.platforms = [];
+        if (!state.settings.platforms.includes(platform)) state.settings.platforms.push(platform);
+        
+        db.saveSettings(state.settings);
+        db.savePosts(state.posts);
+        
+        renderAll();
+        
+        const insightsBtn = document.getElementById('insights-run-ai-btn');
+        if (insightsBtn) insightsBtn.click();
+        
+        alert('Pinterest connected and synced successfully via RSS Feed!');
       } catch (err) {
         alert(`Sync Failed: ${err.message}`);
       }
