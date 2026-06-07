@@ -230,6 +230,46 @@ function renderConnectionsList(containerId) {
 window.connectPlatform = function(platform) {
   state.activeOauthPlatform = platform;
 
+  // Bypassing OAuth completely for YouTube, using simple prompt & direct fetch
+  if (platform === 'YouTube') {
+    const handle = prompt("Enter your YouTube Channel Handle (e.g. @sienna_style):");
+    if (!handle) return;
+    
+    (async () => {
+      try {
+        const res = await fetch('/api/youtube/sync', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ platform, handle })
+        });
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || 'Failed to sync platform');
+        
+        if (data.posts && data.posts.length > 0) state.posts.push(...data.posts);
+        
+        const displayHandle = handle.startsWith('@') ? handle : '@' + handle;
+        if (!state.settings.connections) state.settings.connections = {};
+        state.settings.connections[platform] = displayHandle;
+        if (!state.settings.platforms) state.settings.platforms = [];
+        if (!state.settings.platforms.includes(platform)) state.settings.platforms.push(platform);
+        
+        db.saveSettings(state.settings);
+        db.savePosts(state.posts);
+        
+        renderAll();
+        
+        // Auto trigger AI evaluation
+        const insightsBtn = document.getElementById('insights-run-ai-btn');
+        if (insightsBtn) insightsBtn.click();
+        
+        alert('YouTube connected and synced successfully using API Key!');
+      } catch (err) {
+        alert(`Sync Failed: ${err.message}`);
+      }
+    })();
+    return;
+  }
+
   // Extract platform-specific custom Client ID from settings
   let customId = '';
   if (platform === 'Instagram') customId = state.settings.instagramClientId || '';

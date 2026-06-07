@@ -13,10 +13,11 @@ export default async function handler(req, res) {
     let channelId = handle;
     const authHeader = accessToken ? { 'Authorization': `Bearer ${accessToken}` } : {};
     
-    // Fallback: If they provided an API key (e.g. from settings)
-    const keyParam = apiKey ? `&key=${apiKey}` : '';
+    // Fallback: Use server env key first, then provided client key
+    const finalKey = process.env.YOUTUBE_API_KEY || apiKey;
+    const keyParam = finalKey ? `&key=${finalKey}` : '';
 
-    if (!accessToken && !apiKey) {
+    if (!accessToken && !finalKey) {
       throw new Error('No valid YouTube API Key or OAuth Access Token provided. Cannot fetch actual data.');
     }
 
