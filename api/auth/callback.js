@@ -1,3 +1,6 @@
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID; 
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
 export default async function handler(req, res) {
   const { code, state, error } = req.query;
   const platform = state || 'Unknown';
@@ -59,13 +62,13 @@ export default async function handler(req, res) {
       const profileData = await profileResp.json();
       handle = profileData.username || 'InstagramUser';
     }
-    else if (platform === 'YouTube' && process.env.YOUTUBE_CLIENT_ID && process.env.YOUTUBE_CLIENT_SECRET) {
+    else if (platform === 'YouTube' && (process.env.YOUTUBE_CLIENT_ID || GOOGLE_CLIENT_ID) && (process.env.YOUTUBE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET)) {
       const resp = await fetch('https://oauth2.googleapis.com/token', {
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({
-          client_id: process.env.YOUTUBE_CLIENT_ID,
-          client_secret: process.env.YOUTUBE_CLIENT_SECRET,
+          client_id: process.env.YOUTUBE_CLIENT_ID || GOOGLE_CLIENT_ID,
+          client_secret: process.env.YOUTUBE_CLIENT_SECRET || GOOGLE_CLIENT_SECRET,
           code: code,
           grant_type: 'authorization_code',
           redirect_uri: redirectUri

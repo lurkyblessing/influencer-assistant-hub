@@ -1,3 +1,6 @@
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID; 
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
+
 export default function handler(req, res) {
   const { platform, customClientId } = req.query;
   const baseUrl = process.env.REDIRECT_URI_BASE || `https://${req.headers.host}`;
@@ -11,7 +14,7 @@ export default function handler(req, res) {
     const clientId = customClientId || process.env.INSTAGRAM_CLIENT_ID || '1291322779824857';
     authUrl = `https://www.facebook.com/v18.0/dialog/oauth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&scope=instagram_basic,instagram_manage_insights,pages_read_engagement,pages_show_list&response_type=code&state=Instagram`;
   } else if (platform === 'YouTube') {
-    const clientId = customClientId || process.env.YOUTUBE_CLIENT_ID || 'lumina_id';
+    const clientId = customClientId || process.env.YOUTUBE_CLIENT_ID || GOOGLE_CLIENT_ID || 'lumina_id';
     authUrl = `https://accounts.google.com/o/oauth2/v2/auth?client_id=${clientId}&redirect_uri=${encodeURIComponent(redirectUri)}&response_type=code&scope=https://www.googleapis.com/auth/youtube.readonly&state=YouTube&access_type=offline&prompt=consent`;
   } else if (platform === 'Pinterest') {
     const clientId = customClientId || process.env.PINTEREST_CLIENT_ID || 'lumina_id';
