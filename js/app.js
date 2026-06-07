@@ -230,6 +230,73 @@ function renderConnectionsList(containerId) {
 window.connectPlatform = function(platform) {
   state.activeOauthPlatform = platform;
 
+  // Bypassing OAuth completely for TikTok, using Apify Cloud Scraper
+  if (platform === 'TikTok') {
+    const handle = prompt("Enter your TikTok Handle (e.g. charlidamelio):");
+    if (!handle) return;
+    
+    (async () => {
+      try {
+        const startRes = await fetch('/api/tiktok/start', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ platform, handle })
+        });
+        const startData = await startRes.json();
+        
+        if (!startRes.ok) throw new Error(startData.error || 'Failed to start TikTok sync');
+        
+        const runId = startData.runId;
+        alert('TikTok Sync started in the cloud! This takes ~30 seconds. Click OK to continue browsing, your dashboard will update automatically when ready.');
+        
+        const pollInterval = setInterval(async () => {
+          try {
+            const resultsRes = await fetch('/api/tiktok/results', {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ runId })
+            });
+            const resultsData = await resultsRes.json();
+            
+            if (!resultsRes.ok) {
+              clearInterval(pollInterval);
+              throw new Error(resultsData.error || 'Failed to fetch TikTok results');
+            }
+            
+            if (resultsData.status === 'SUCCEEDED') {
+              clearInterval(pollInterval);
+              
+              if (resultsData.posts && resultsData.posts.length > 0) state.posts.push(...resultsData.posts);
+              
+              const displayHandle = handle.startsWith('@') ? handle : '@' + handle;
+              if (!state.settings.connections) state.settings.connections = {};
+              state.settings.connections[platform] = displayHandle;
+              if (!state.settings.platforms) state.settings.platforms = [];
+              if (!state.settings.platforms.includes(platform)) state.settings.platforms.push(platform);
+              
+              db.saveSettings(state.settings);
+              db.savePosts(state.posts);
+              
+              renderAll();
+              
+              const insightsBtn = document.getElementById('insights-run-ai-btn');
+              if (insightsBtn) insightsBtn.click();
+              
+              alert('TikTok connected and synced successfully using Apify!');
+            }
+          } catch (err) {
+            clearInterval(pollInterval);
+            alert(`TikTok Sync Failed: ${err.message}`);
+          }
+        }, 5000);
+        
+      } catch (err) {
+        alert(`TikTok Sync Failed: ${err.message}`);
+      }
+    })();
+    return;
+  }
+
   // Bypassing OAuth completely for YouTube, using simple prompt & direct fetch
   if (platform === 'YouTube') {
     const handle = prompt("Enter your YouTube Channel Handle (e.g. @sienna_style):");
