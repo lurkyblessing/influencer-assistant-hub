@@ -3,7 +3,7 @@ export default async function handler(req, res) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { platform, handle } = req.body;
+  const { platform } = req.body;
 
   if (platform !== 'Instagram') {
     return res.status(400).json({ error: 'This endpoint is for Instagram sync only.' });
@@ -16,15 +16,44 @@ export default async function handler(req, res) {
       throw new Error('No Instagram Graph API token configured in environment variables.');
     }
 
-    // Fetch user media from Instagram Graph API
-    // The master token allows us to fetch the profile it is linked to directly via 'me/media'
-    const graphUrl = `https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url,permalink,timestamp&access_token=${accessToken}`;
+    // Step 1: Get Facebook Pages linked to this user token
+    const pagesUrl = `https://graph.facebook.com/v20.0/me/accounts?access_token=${accessToken}`;
+    const pagesRes = await fetch(pagesUrl);
+    const pagesData = await pagesRes.json();
+
+    if (pagesData.error) {
+      throw new Error(`Step 1 (Pages) Error: ${pagesData.error.message}`);
+    }
+
+    if (!pagesData.data || pagesData.data.length === 0) {
+      throw new Error('No Facebook Pages found linked to this account. Ensure your IG is a Professional account linked to a FB Page.');
+    }
+
+    // Step 2: Find the linked instagram_business_account ID from the pages
+    let igAccountId = null;
+    for (const page of pagesData.data) {
+      const igUrl = `https://graph.facebook.com/v20.0/${page.id}?fields=instagram_business_account&access_token=${accessToken}`;
+      const igRes = await fetch(igUrl);
+      const igData = await igRes.json();
+      
+      if (igData.instagram_business_account?.id) {
+        igAccountId = igData.instagram_business_account.id;
+        break;
+      }
+    }
+
+    if (!igAccountId) {
+      throw new Error('Could not find an Instagram Business/Creator account linked to any of your Facebook Pages.');
+    }
+
+    // Step 3: Fetch the media with deep metrics using the IG Account ID
+    const mediaUrl = `https://graph.facebook.com/v20.0/${igAccountId}/media?fields=id,caption,media_type,media_url,permalink,timestamp,like_count,comments_count&access_token=${accessToken}`;
     
-    const response = await fetch(graphUrl);
+    const response = await fetch(mediaUrl);
     const data = await response.json();
 
     if (data.error) {
-      throw new Error(data.error.message || 'Instagram API returned an error.');
+      throw new Error(`Step 3 (Media) Error: ${data.error.message}`);
     }
 
     if (!data.data || data.data.length === 0) {
@@ -33,7 +62,6 @@ export default async function handler(req, res) {
 
     // Map Instagram data to Lumina Hub's schema
     const posts = data.data.slice(0, 5).map(item => {
-      // Clean up caption or provide a default if empty
       const cleanCaption = item.caption ? item.caption.substring(0, 150) + (item.caption.length > 150 ? '...' : '') : 'Instagram Post';
       
       let dateObj = new Date();
@@ -48,9 +76,9 @@ export default async function handler(req, res) {
         title: `${item.media_type === 'VIDEO' ? 'Reel/Video' : 'Post'} from Instagram`,
         platform: 'Instagram',
         date: dateObj.toISOString().split('T')[0],
-        views: 0, // Basic Display API does not return views or likes unfortunately
-        likes: 0, 
-        comments: 0,
+        views: 0, // Views are highly restricted by Meta APIs for standard media endpoints
+        likes: item.like_count || 0, 
+        comments: item.comments_count || 0,
         shares: 0,
         caption: cleanCaption,
         link: item.permalink || '',
