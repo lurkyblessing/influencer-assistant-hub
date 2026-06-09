@@ -72,6 +72,9 @@ export default async function handler(req, res) {
       const cleanCaption = caption.substring(0, 150) + (caption.length > 150 ? '...' : '');
       const dynamicTitle = caption.trim() ? (caption.length > 30 ? caption.substring(0, 30).trim() + '...' : caption.trim()) : 'TikTok Video';
 
+      // Attempt to extract auto-generated subtitles or suggested keywords from the Apify dataset
+      const transcript = item.videoMeta?.subtitle || (item.suggestedWords ? item.suggestedWords.join(' ') : '') || '';
+
       return {
         id: `p_tok_${videoId}`,
         title: dynamicTitle,
@@ -82,6 +85,7 @@ export default async function handler(req, res) {
         comments: parseInt(comments),
         shares: parseInt(shares),
         caption: cleanCaption,
+        transcript: transcript,
         link: item.webVideoUrl || item.url || '',
         imageUrl: item.covers?.default || item.videoMeta?.coverUrl || item.imageUrl || ''
       };
