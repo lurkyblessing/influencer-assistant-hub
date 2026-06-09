@@ -69,16 +69,19 @@ export default async function handler(req, res) {
         dateObj = new Date(item.createdAt);
       }
 
+      const cleanCaption = caption.substring(0, 150) + (caption.length > 150 ? '...' : '');
+      const dynamicTitle = caption.trim() ? (caption.length > 30 ? caption.substring(0, 30).trim() + '...' : caption.trim()) : 'TikTok Video';
+
       return {
         id: `p_tok_${videoId}`,
-        title: 'TikTok Post',
+        title: dynamicTitle,
         platform: 'TikTok',
         date: dateObj.toISOString().split('T')[0],
         views: parseInt(views),
         likes: parseInt(likes),
         comments: parseInt(comments),
         shares: parseInt(shares),
-        caption: caption.substring(0, 150) + (caption.length > 150 ? '...' : ''),
+        caption: cleanCaption,
         link: item.webVideoUrl || item.url || '',
         imageUrl: item.covers?.default || item.videoMeta?.coverUrl || item.imageUrl || ''
       };

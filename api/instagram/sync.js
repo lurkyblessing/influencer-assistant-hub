@@ -63,6 +63,7 @@ export default async function handler(req, res) {
     // Map Instagram data to Lumina Hub's schema
     const posts = data.data.slice(0, 5).map(item => {
       const cleanCaption = item.caption ? item.caption.substring(0, 150) + (item.caption.length > 150 ? '...' : '') : 'Instagram Post';
+      const dynamicTitle = item.caption ? (item.caption.length > 30 ? item.caption.substring(0, 30).trim() + '...' : item.caption.trim()) : `${item.media_type === 'VIDEO' ? 'Reel' : 'Post'} from Instagram`;
       
       let dateObj = new Date();
       if (item.timestamp) {
@@ -73,7 +74,7 @@ export default async function handler(req, res) {
       
       return {
         id: `p_ins_${item.id}`,
-        title: `${item.media_type === 'VIDEO' ? 'Reel/Video' : 'Post'} from Instagram`,
+        title: dynamicTitle,
         platform: 'Instagram',
         date: dateObj.toISOString().split('T')[0],
         views: 0, // Views are highly restricted by Meta APIs for standard media endpoints
